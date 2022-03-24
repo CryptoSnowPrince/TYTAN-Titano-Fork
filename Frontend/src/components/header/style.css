@@ -1,0 +1,22 @@
+.header {
+  position: fixed;
+  width: calc(100% - 250px);
+  right: 0;
+  top: 0;
+  z-index: 9999;
+  transition: all 0.5s;
+}
+
+.toggle-bar {
+  display: hidden;
+}
+@media (max-width: 1200px) {
+  .header {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .toggle-bar {
+    display: block;
+    /* flex-grow: 1; */
+  }
+}

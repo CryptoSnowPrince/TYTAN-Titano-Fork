@@ -1,0 +1,95 @@
+body {
+  color: #d0dce8;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  background-color: #00020b;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  box-sizing: border-box;
+  background-image: url(./assets/body-bg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.btn-bg {
+  padding: 12px;
+  background: rgba(19, 24, 35, 0.3411764705882353);
+  -webkit-backdrop-filter: blur(9.17197px);
+  backdrop-filter: blur(9.17197px);
+  border-radius: 7.94904px;
+  color: #d0dce8;
+}
+.btn-bg:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.wrapper {
+  width: 100%;
+
+  text-align: center;
+  background: rgba(19, 24, 35, 0.3411764705882353);
+  -webkit-backdrop-filter: blur(33px);
+  backdrop-filter: blur(33px);
+  border-radius: 12px;
+  border: 1px solid rgba(19, 207, 207, 0.06666666666666667);
+}
+
+.wrapper-inner {
+  padding: 20px 30px 30px 30px;
+  color: #d0dce8;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  backdrop-filter: blur(33px);
+}
+
+.dashboard-card {
+  background: rgba(19, 24, 35, 0.3411764705882353);
+  -webkit-backdrop-filter: blur(33px);
+  backdrop-filter: blur(33px);
+  border-radius: 22.1411px;
+  border: 1px solid rgba(19, 207, 207, 0.06666666666666667);
+  /* padding: 32px 32px 44px; */
+}
+.dashboard-card-chips {
+  background: rgba(19, 24, 35, 0.3411764705882353);
+  -webkit-backdrop-filter: blur(33px);
+  backdrop-filter: blur(33px);
+  border-radius: 21.2895px;
+  border: 1px solid rgba(19, 207, 207, 0.06666666666666667);
+  padding: 10px 16px;
+  box-shadow: 11.4753980637px 11.4753980637px 11.4753980637px 0 rgb(0 0 0 / 25%);
+  color: #00ff00;
+  font-size: 12px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+body .MuiSlider-colorPrimary {
+  height: 12px;
+}
+body .MuiSlider-rail,
+body .MuiSlider-thumbColorPrimary {
+  background-color: #fff;
+  border: 1px solid rgba(0, 255, 0, 1);
+}
+
+body .MuiSlider-track {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: linear-gradient(
+      90deg,
+      rgba(0, 255, 0, 0.6) 6.84%,
+      rgba(126, 195, 210, 0.6) 91.23%
+    ),
+    #ffffff;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
