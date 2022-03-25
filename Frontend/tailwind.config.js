@@ -3,18 +3,34 @@ module.exports = {
 
   theme: {
     extend: {
+      container: {
+        padding: "1rem",
+        center: true,
+        screens: {
+          lg: "1140px",
+          xl: "1140px",
+          "2xl": "1300px",
+        },
+      },
       fontFamily: {
-        sans: ["Play", "sans-serif"],
+        sans: ["Planer Regular"],
       },
       colors: {
         primary: {
           DEFAULT: "#00FF00",
+        },
+        secondary: {
+          DEFAULT: "#1C3F47",
         },
         lightGray: {
           400: "#D0DCE8B2",
         },
         dark: {
           400: "#222222",
+          500: "#2C2C2C",
+        },
+        red: {
+          DEFAULT: "#FF005C",
         },
       },
     },

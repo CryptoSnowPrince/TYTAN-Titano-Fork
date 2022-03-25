@@ -85,7 +85,7 @@ const Calculator = () => {
               defaultValue={30}
             />
           </div>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-4">
+          <div className="mt-10 grid grid-cols-1 uppercase md:grid-cols-2 gap-x-20 gap-y-4">
             {dataList.map((val, i) => (
               <div
                 className=" mb-2 flex items-center justify-between font-medium"
@@ -93,7 +93,7 @@ const Calculator = () => {
               >
                 <div className=" text-white ">{val.title}</div>
                 <p>{"//"}</p>
-                <div className=" text-primary">{val.result}</div>
+                <div className=" text-primary ">{val.result}</div>
               </div>
             ))}
           </div>

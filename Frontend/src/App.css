@@ -2,17 +2,21 @@ body {
   color: #d0dce8;
   margin: 0;
   font-weight: 400;
-  line-height: 1;
-  background-color: #00020b;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  line-height: 1.3;
+  background-color: #333333;
   box-sizing: border-box;
+  background-image: url(./assets/body-bg.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+.layout {
   background-image: url(./assets/body-bg.svg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50%;
+  background-attachment: fixed;
+  background-position: top right;
 }
-
 .btn-bg {
   padding: 12px;
   background: rgba(19, 24, 35, 0.3411764705882353);
@@ -92,4 +96,40 @@ body .MuiSlider-track {
     ),
     #ffffff;
   box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+
+.custom-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.liquidity {
+  background-color: #333333;
+  background-image: url(./assets/liquidity-bg.png);
+  background-size: cover;
+  background-position: bottom;
+}
+
+.footer {
+  background-color: #333333;
+}
+.how-it-works {
+  background-color: #333333;
+  background-image: url(./assets/how-it-works-bg.png);
+
+  background-position: bottom left;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (max-width: 768px) {
+  .nav-menu {
+    min-width: 350p;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
 }

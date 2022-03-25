@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Planer Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: url(./assets/font/Planer_Reg.woff) format("woff");
+  }
+}

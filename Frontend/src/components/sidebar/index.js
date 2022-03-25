@@ -14,13 +14,9 @@ const Sidebar = ({ show, setShow }) => {
   return (
     <div className={`sidebar ${show && "active"}  flex flex-col`}>
       <div className="grid grid-flow-col gap-x-3 justify-start  items-center sidebar-logo px-5">
-        {/* <div className="px-2">
-          <Logo />
-        </div>
-        <div className=" w-80">
-          <LogoText />
-        </div> */}
-        <img src={Logo} alt="" />
+        <Link to="">
+          <img src={Logo} alt="" />
+        </Link>
       </div>
       <div className="flex flex-col  justify-between flex-1 px-6 py-4">
         <ul className=" pr-14">
@@ -70,17 +66,17 @@ const menuList = [
   {
     text: "Dashboard",
     icon: <DashboardIcon />,
-    link: "/",
+    link: "",
   },
   {
     text: "Account",
     icon: <AccountCircleIcon />,
-    link: "/account",
+    link: "account",
   },
   {
     text: "Calculator",
     icon: <CalculateIcon />,
-    link: "/calculator",
+    link: "calculator",
   },
   {
     text: "Swap",

@@ -79,7 +79,7 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="bg-dark-400 rounded-xl bg-opacity-40 px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-6">
+        <div className="bg-dark-400 rounded-xl uppercase bg-opacity-40 px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-6">
           {accountData.map((val, i) => (
             <div
               className="flex justify-between items-center text-sm sm:text-base"
