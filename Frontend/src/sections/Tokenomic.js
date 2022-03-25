@@ -40,7 +40,7 @@ const Tokenomic = () => {
     },
     {
       title: " SuperNova",
-      text: "2.5% of TYTAN is burnt in the Supernova",
+      text: "2.5% of TYTAN is burnt there",
     },
   ];
   return (
@@ -56,13 +56,17 @@ const Tokenomic = () => {
               <div>
                 {buydata.map((val, i) => (
                   <div className="uppercase font-bold mb-4" key={i}>
-                    <p className="text-primary mb-1">{val.title}</p>
-                    <p className="text-white">{val.text}</p>
+                    <p className="text-primary mb-1 text-sm md:text-base">
+                      {val.title}
+                    </p>
+                    <p className="text-white text-xs md:text-base">
+                      {val.text}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="px-8 flex-shrink-0">
+            <div className="px-4 md:px-8 flex-shrink-0">
               {[icon1, icon2, icon3, icon4].map((val, i) => (
                 <div className="mb-6 max-w-max " key={i}>
                   <img src={val} alt="" className=" flex-shrink-0" />
@@ -71,12 +75,16 @@ const Tokenomic = () => {
             </div>
             <div>
               <img src={SellImage} alt="" className="mr-auto" />
-              <p className="text-red text-4xl mt-6 font-bold mb-8">BUY</p>
+              <p className="text-red text-4xl mt-6 font-bold mb-8">SELL</p>
               <div>
                 {sellData.map((val, i) => (
                   <div className="uppercase font-bold mb-4" key={i}>
-                    <p className="text-red mb-1">{val.title}</p>
-                    <p className="text-white">{val.text}</p>
+                    <p className="text-sm md:text-base text-red mb-1">
+                      {val.title}
+                    </p>
+                    <p className="text-white text-xs md:text-base">
+                      {val.text}
+                    </p>
                   </div>
                 ))}
               </div>

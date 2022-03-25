@@ -9,10 +9,7 @@ const Header = () => {
           <img src={Logo} alt="" className=" max-w-xs w-full mx-auto" />
         </Link>
         <div className="md:flex items-center justify-end">
-          <ul
-            className="flex items-center justify-center py-2 md:py-0 my-4 md:my-0 md:justify-end nav-menu"
-            // style={{ minWidth: 350, overflowX: "auto" }}
-          >
+          <ul className="flex items-center justify-center py-2 md:py-0 my-4 md:my-0 md:justify-end nav-menu">
             {linkList.map((val, i) => (
               <li key={i} className="uppercase font-bold text-lg text-white">
                 {" "}
