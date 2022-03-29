@@ -74,6 +74,7 @@ const Liquidity = () => {
       <Tokenomic />
       <Competetive />
       <Faq />
+      <div style={{ height: "100vh" }}></div>
     </section>
   );
 };

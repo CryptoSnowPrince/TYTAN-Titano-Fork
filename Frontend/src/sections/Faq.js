@@ -65,7 +65,7 @@ const Faq = () => {
           >
             FAQ's
           </h2>
-          <div className="">
+          <div className="" style={{ position: "absolute" }}>
             {accordianData.map((v, i) => (
               <div
                 key={i}
