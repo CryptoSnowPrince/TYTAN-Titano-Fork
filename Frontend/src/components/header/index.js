@@ -3,7 +3,7 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import "./style.css";
 import OutsideClickHandler from "react-outside-click-handler";
-const Header = ({ show, setShow }) => {
+const Header = ({ show, setShow, connect, web3Provider, disconnect, showAccountAddress }) => {
   return (
     <div className="text-white items-center flex justify-between md:justify-end header py-6">
       <OutsideClickHandler
@@ -27,9 +27,11 @@ const Header = ({ show, setShow }) => {
             <span className="text-primary"> TITANO</span>
           </p>
         </button>
-        <button className="font-medium py-2.5 px-4 text-white border border-primary rounded-md">
+        {!web3Provider ? (<button className="font-medium py-2.5 px-4 text-white border border-primary rounded-md" onClick={connect}>
           Connect Wallet
-        </button>
+        </button>) : (<button className="font-medium py-2.5 px-4 text-white border border-primary rounded-md" onClick={disconnect}>
+          {showAccountAddress}
+        </button>)}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 const accordianData = [
   {
@@ -88,11 +88,10 @@ const Faq = () => {
                   </span>
                 </div>
                 <div
-                  className={` transition ease-in-out duration-500 ${
-                    clicked === i
+                  className={` transition ease-in-out duration-500 ${clicked === i
                       ? "h-auto max-h-72 py-4"
                       : "overflow-hidden max-h-0 h-0"
-                  }`}
+                    }`}
                 >
                   <p className="max-w-4xl w-full ">{v.answer}</p>
                 </div>
