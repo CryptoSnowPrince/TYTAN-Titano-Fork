@@ -32,27 +32,46 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="py-20 ">
-      <div className="container">
+    <div className="py-10 md:py-20 ">
+      <div className="px-10 sm:container">
         <div className="custom-container">
-          <h2 className="text-5xl font-bold text-center mb-10">How it works</h2>
+          <h2
+            data-aos="fade-up"
+            className="text-3xl md:text-5xl font-bold text-center mb-10"
+          >
+            How it works
+          </h2>
           <div className="grid gap-y-8">
-            <img src={image} alt="" className="hidden md:block" />
+            <img
+              data-aos="fade-up"
+              src={image}
+              alt=""
+              className="hidden md:block"
+            />
             {datalist.map((val, i) => (
-              <div key={i} className="mb-6 md:hidden">
+              <div data-aos="fade-up" key={i} className="mb-6 md:hidden">
                 <img src={val.icon} alt="" />
-                <p className="mt-4 text-lg font-bold text-white">{val.text}</p>
+                <p className="mt-4 text-base  sm:text-lg font-bold text-white">
+                  {val.text}
+                </p>
               </div>
             ))}
           </div>
 
           <div className="mt-20 grid  md:grid-flow-col gap-8 md:gap-10 text-center items-center justify-center">
-            <a href="#" className=" text-primary text-7xl mx-auto ">
+            <a
+              data-aos="fade-right"
+              href="#"
+              className=" text-primary text-7xl mx-auto "
+            >
               <FaDiscord />
             </a>
             <p className="text-primary text-4xl"> Join Our Discord Channel</p>
-            <button className="py-3 px-6 bg-primary text-black rounded-md font-bold text-sm max-w-max mx-auto md:mx-0">
-              JOIN NOW
+            <button
+              data-aos="fade-left"
+              className="btn py-3 px-6 bg-primary text-black rounded-md font-bold text-sm max-w-max mx-auto md:mx-0"
+            >
+              JOIN DISCORD
             </button>
           </div>
         </div>

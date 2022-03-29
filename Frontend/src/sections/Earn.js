@@ -1,18 +1,25 @@
 import React from "react";
 import Arrow from "../assets/arrow.svg";
+
 const Earn = () => {
   return (
     <div>
-      <h2 className="text-4xl md:text-5xl font-bold text-center">
+      <h2
+        data-aos="fade-up"
+        className="text-3xl md:text-5xl font-bold text-center"
+      >
         How much can I earn?
       </h2>
-      <div className="grid md:grid-cols-2 gap-20 py-10 relative">
+      <div
+        className="grid md:grid-cols-2 gap-20 py-10 relative"
+        data-aos="fade-up"
+      >
         <img
           className=" rotate-90 md:rotate-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-28 md:w-40"
           src={Arrow}
           alt=""
         />
-        <div className=" bg-secondary py-24 md:py-16  bg-opacity-60  md:pr-20 text-white  flex items-center">
+        <div className=" bg-secondary-500  bg-opacity-60 md:bg-secondary md:bg-opacity-60 py-28 md:py-16    md:pr-20 text-white  flex items-center earn-box">
           <div className="max-w-max mx-auto md:ml-auto text-center md:text-auto">
             <p className="font-bold text-lg uppercase mt-2 ">
               At the end of the year and with
@@ -21,8 +28,8 @@ const Earn = () => {
             <p className="font-bold">of $TYTAN invested.</p>
           </div>
         </div>
-        <div className=" bg-secondary py-14  bg-opacity-60 md:l-20 text-white">
-          <div className="max-w-sm mx-auto md:mr-auto text-center md:text-auto">
+        <div className=" bg-secondary-500 bg-opacity-60 md:bg-secondary md:bg-opacity-60 py-12   md:l-20 text-white earn-box">
+          <div className="max-w-sm mx-auto md:mr-auto text-center md:text-auto px-10 md:px-0">
             <p className=" text-white font-bold text-2xl uppercase">
               You can earn up to
               <br />
@@ -33,8 +40,11 @@ const Earn = () => {
               *Earnings are calculated in a scenario where the SAP sustains the
               rebase interest for 365 days.
             </p>
-            <button className="uppercase bg-primary bg-opacity-10 border-2 border-primary  text-primary text-xs py-1.5 rounded-md px-4 mt-8">
+            <button className="btn hidden md:inline-block uppercase  bg-primary bg-opacity-10 border-2 border-primary  text-primary text-xs py-1.5 rounded-md px-4 mt-8">
               Open App
+            </button>
+            <button className="btn md:hidden py-3.5 mt-5 font-bold rounded-md bg-primary text-black px-10">
+              OPEN APP
             </button>
           </div>
         </div>

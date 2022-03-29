@@ -105,26 +105,35 @@ const Competetive = () => {
 
   return (
     <div className="py-20">
-      <div className="container">
+      <div className="px-8 sm:container">
         <div className="custom-container">
-          <h2 className="text-5xl font-bold text-center">
+          <h2
+            data-aos="fade-up"
+            className="text-3xl md:text-5xl font-bold text-center"
+          >
             Competitive Advantages
           </h2>
-          <div style={{ overflowX: "auto" }}>
+          <div data-aos="fade-up" style={{ overflowX: "auto" }}>
             <div style={{ minWidth: 800 }}>
               <div className="grid grid-cols-12 mt-10">
                 <div className="col-span-4">
-                  <p className="text-4xl font-bold mb-6">Features</p>
+                  <p className="text-3xl sm:text-4xl font-bold mb-6">
+                    Features
+                  </p>
                 </div>
                 <div className="col-span-8 grid grid-cols-3">
                   <div>
-                    <p className="text-4xl font-bold mb-6">Tytan</p>
+                    <p className="text-3xl sm:text-4xl font-bold mb-6">Tytan</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold mb-6">Titano</p>
+                    <p className="text-3xl sm:text-4xl font-bold mb-6">
+                      Titano
+                    </p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold mb-6">Libero</p>
+                    <p className="text-3xl sm:text-4xl font-bold mb-6">
+                      Libero
+                    </p>
                   </div>
                 </div>
               </div>

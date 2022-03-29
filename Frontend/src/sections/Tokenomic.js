@@ -5,6 +5,10 @@ import icon1 from "../assets/tm1.svg";
 import icon2 from "../assets/tm2.svg";
 import icon3 from "../assets/tm3.svg";
 import icon4 from "../assets/tm4.svg";
+import icon1_1 from "../assets/tm1_cl.svg";
+import icon2_2 from "../assets/tm2_cl.svg";
+import icon3_3 from "../assets/tm3_cl.svg";
+import icon4_4 from "../assets/tm4_cl.svg";
 const Tokenomic = () => {
   const buydata = [
     {
@@ -12,7 +16,7 @@ const Tokenomic = () => {
       text: "4% of order fees return to liquidity",
     },
     {
-      title: "TYTAN Insurance Fund",
+      title: "Insurance Fund",
       text: "5% of order fees are stored in TIF",
     },
     {
@@ -31,7 +35,7 @@ const Tokenomic = () => {
       text: "4% of order fees return to liquidity",
     },
     {
-      title: " TYTAN Insurance Fund",
+      title: "  Insurance Fund",
       text: "5% of order fees are stored in TIF      ",
     },
     {
@@ -39,19 +43,26 @@ const Tokenomic = () => {
       text: "2.5% of order fees go to the treasury",
     },
     {
-      title: " SuperNova",
-      text: "2.5% of TYTAN is burnt there",
+      title: "Fire Pit",
+      text: "2.5% of TYTAN is burnt in the fire",
     },
   ];
   return (
     <div className="py-20">
-      <div className="container">
+      <div className="px-8 sm:container">
         <div className="custom-container">
-          <h2 className="text-5xl font-bold text-center">Tokenomics</h2>
+          <h2
+            data-aos="fade-up"
+            className="text-3xl sm:text-5xl font-bold text-center"
+          >
+            Tokenomics
+          </h2>
           <div className="mt-10 flex  justify-center  items-end">
-            <div className="text-right">
+            <div data-aos="fade-right" className="text-right">
               <img src={BuyImage} alt="" className="ml-auto" />
-              <p className="text-primary text-4xl mt-6 font-bold mb-8">BUY</p>
+              <p className="text-primary text-3xl md:text-4xl mt-6 font-bold mb-8">
+                BUY
+              </p>
 
               <div>
                 {buydata.map((val, i) => (
@@ -66,16 +77,25 @@ const Tokenomic = () => {
                 ))}
               </div>
             </div>
-            <div className="px-4 md:px-8 flex-shrink-0">
+            <div className="hidden md:block px-4 md:px-8 flex-shrink-0">
               {[icon1, icon2, icon3, icon4].map((val, i) => (
                 <div className="mb-6 max-w-max " key={i}>
                   <img src={val} alt="" className=" flex-shrink-0" />
                 </div>
               ))}
             </div>
-            <div>
+            <div className=" md:hidden px-6 md:px-8 flex-shrink-0 grid gap-4">
+              {[icon1_1, icon2_2, icon3_3, icon4_4].map((val, i) => (
+                <div className="mb-6 max-w-max " key={i}>
+                  <img src={val} alt="" className=" flex-shrink-0 w-8" />
+                </div>
+              ))}
+            </div>
+            <div data-aos="fade-left">
               <img src={SellImage} alt="" className="mr-auto" />
-              <p className="text-red text-4xl mt-6 font-bold mb-8">SELL</p>
+              <p className="text-red text-3xl md:text-4xl mt-6 font-bold mb-8">
+                SELL
+              </p>
               <div>
                 {sellData.map((val, i) => (
                   <div className="uppercase font-bold mb-4" key={i}>

@@ -4,9 +4,13 @@ import Logo from "../../assets/logo.png";
 const Header = () => {
   return (
     <div>
-      <div className=" container py-6 md:flex justify-between items-center">
+      <div className=" container pt-14 pb-10 md:py-6 md:flex justify-between items-center">
         <Link to="/">
-          <img src={Logo} alt="" className=" max-w-xs w-full mx-auto" />
+          <img
+            src={Logo}
+            alt=""
+            className=" w-10/12  md:max-w-xs md:w-full mx-auto"
+          />
         </Link>
         <div className="md:flex items-center justify-end">
           <ul className="flex items-center justify-center py-2 md:py-0 my-4 md:my-0 md:justify-end nav-menu">
@@ -19,7 +23,7 @@ const Header = () => {
               </li>
             ))}
           </ul>
-          <button className="m-2 block font-bold mx-auto md:mx-2 mt-6 md:mt-2 bg-primary text-black  py-1.5 rounded-md px-4 uppercase  md:text-sm">
+          <button className="m-2 block mx-auto md:mx-2 mt-8 md:mt-2 bg-primary text-black  py-3.5 px-10  md:py-2 rounded-md md:px-6 uppercase  font-bold btn">
             Open App
           </button>
         </div>

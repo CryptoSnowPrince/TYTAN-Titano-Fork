@@ -57,20 +57,30 @@ const Faq = () => {
 
   return (
     <section className="py-16 " id="faq">
-      <div className="container">
-        <div className="custom-container">
-          <h2 className="text-5xl font-bold text-center">FAQ's</h2>
+      <div className="px-8 sm:container">
+        <div className="custom-container ">
+          <h2
+            className="text-3xl md:text-5xl font-bold text-center "
+            data-aos="fade-up"
+          >
+            FAQ's
+          </h2>
           <div className="">
             {accordianData.map((v, i) => (
               <div
                 key={i}
+                data-aos="fade-up"
+                data-aos-delay={`${i * 200}`}
                 className=" border-b-2 border-primary border-sloid pt-4 pb-0.5  transition ease-out duration-500 "
               >
                 <div
                   className="flex  justify-between cursor-pointer py-4"
                   onClick={() => toggle(i)}
                 >
-                  <h6 className="md:text-2xl " style={{ userSelect: "none" }}>
+                  <h6
+                    className="md:text-2xl mr-20 font-bold md:mr-0 "
+                    style={{ userSelect: "none" }}
+                  >
                     {v.question}
                   </h6>
                   <span className="transition ease-out duration-500 text-primary">

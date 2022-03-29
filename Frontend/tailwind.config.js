@@ -21,6 +21,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "#1C3F47",
+          500: "#1A5050",
         },
         lightGray: {
           400: "#D0DCE8B2",
@@ -28,6 +29,7 @@ module.exports = {
         dark: {
           400: "#222222",
           500: "#2C2C2C",
+          600: "#282828",
         },
         red: {
           DEFAULT: "#FF005C",
