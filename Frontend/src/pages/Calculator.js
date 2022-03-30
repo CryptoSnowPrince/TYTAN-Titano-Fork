@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Slider from "@mui/material/Slider";
 
-const Calculator = ({ marketPrice, titanoBalance }) => {
+const Calculator = ({ marketPrice, titanoBalance, calculatorData }) => {
   const [titanoAmount, setTitanoAmount] = useState(0);
   const [rewardYield, setRewardYield] = useState(102483.58);
   const [priceAtPurchase, setPriceAtPurchase] = useState(0);
