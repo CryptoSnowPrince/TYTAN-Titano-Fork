@@ -164,3 +164,7 @@ body {
     min-height: 1000px;
   }
 }
+.bg-dark-400.rounded-xl.bg-opacity-50.p-8 {
+  transform: none;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}

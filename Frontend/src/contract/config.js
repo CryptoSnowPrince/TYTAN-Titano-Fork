@@ -5,7 +5,7 @@
 const config = {
     parcelforce: {
         56: '',
-        97: '0xb491bC455D492e3eEF704DA26864e0A95C704652',
+        97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
     },
     BlockExplorerURL: {
         56: "https://bscscan.com",

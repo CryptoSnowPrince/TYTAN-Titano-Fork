@@ -1,44 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Slider from "@mui/material/Slider";
 
-const Calculator = () => {
-  const [value, setValue] = useState(45);
+const Calculator = ({ marketPrice, titanoBalance }) => {
+  const [titanoAmount, setTitanoAmount] = useState(0);
+  const [rewardYield, setRewardYield] = useState(102483.58);
+  const [priceAtPurchase, setPriceAtPurchase] = useState(0);
+  const [futureMarketPrice, setFutureMarketPrice] = useState(0);
+  const [days, setDays] = useState(30);
+
+  const [rewardsEstimation, setRewardsEstimation] = useState(0);
+  const [potentialReturn, setPotentialReturn] = useState(0);
+  const [initialInvestment, setInitialInvestment] = useState(0);
+
+  const calcCurrentWealth = () => {
+    return titanoAmount * marketPrice;
+  };
+
+  const calcNewBalance = useCallback(() => {
+    let balance = titanoAmount;
+    for (let i = 0; i < days; i++) {
+      balance += balance * 0.018999;
+    }
+    return balance;
+  }, [titanoAmount, days]);
+
+  useEffect(() => {
+    setTitanoAmount(parseFloat((titanoBalance * 1.0).toFixed(2)));
+    setPriceAtPurchase(marketPrice);
+    setFutureMarketPrice(marketPrice);
+  }, [titanoBalance, marketPrice]);
+
+  useEffect(() => {
+    setInitialInvestment(titanoAmount * priceAtPurchase);
+  }, [titanoAmount, priceAtPurchase]);
+
+  useEffect(() => {
+    const newBalance = calcNewBalance();
+    setRewardsEstimation(newBalance);
+    const newPotentialReturn = newBalance * futureMarketPrice;
+    setPotentialReturn(newPotentialReturn);
+  }, [days, futureMarketPrice, titanoAmount, calcNewBalance]);
 
   const topList = [
     {
       title: "TITANO Price",
-      result: "$0.198571",
+      result: "$" + marketPrice,
     },
     {
       title: "APY:",
-      result: "102,483.58%",
+      result: (new Intl.NumberFormat("en-US").format(rewardYield)) + "%",
     },
     {
       title: "Your TITANO Balance",
-      result: "0.00 TITANO",
+      result: (titanoAmount || 0).toFixed(2) + " TITANO",
     },
   ];
 
   const dataList = [
     {
       title: "current wealth",
-      result: "  $0.1860 Usd",
+      result: "$" + calcCurrentWealth().toFixed(2) + " Usd",
     },
     {
       title: "titano rewards estimation",
-      result: "    1.31415 tytan",
+      result: rewardsEstimation.toFixed(2) + " tytan",
     },
     {
       title: "your initial investment",
-      result: "     $0.1860 Usd",
+      result: "$" + initialInvestment.toFixed(2) + " Usd",
     },
     {
       title: "potential return",
-      result: "    $2110.02",
+      result: "$" + potentialReturn.toFixed(2) + " Usd",
     },
     {
       title: "potential number of space travels ",
-      result: "5",
+      result: Math.floor(Number(potentialReturn) / 220000),
     },
   ];
 
@@ -64,23 +101,77 @@ const Calculator = () => {
         </div>
         <div className="bg-dark-400 rounded-xl bg-opacity-40 px-4 py-6 md:p-6 md:px-8">
           <div className=" grid md:grid-cols-2 mt-4 gap-10">
-            <CustomInput />
-            <CustomInput label="APY (%)" andormentTxt="Current" />
-            <CustomInput
-              label="TITANO price at purchase ($)"
-              andormentTxt="Current"
-            />
-            <CustomInput
-              label="Future TITANO price ($)"
-              andormentTxt="Current"
-            />
+            <div>
+              <label htmlFor="amount" className="font-medium">
+                TITANO Amount
+              </label>
+              <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
+                <input
+                  className="bg-transparent py-2 px-4 h-full w-10 sm:w-auto flex-1 focus:outline-none"
+                  type="number"
+                  value={titanoAmount}
+                  onChange={e => setTitanoAmount(parseFloat(e.target.value))}
+                  placeholder={0}
+                  id="amount"
+                />
+                <p style={{ cursor: "pointer" }} onClick={() => setTitanoAmount(Number((titanoBalance * 1.0).toFixed(2)))} className="p-1 px-2 font-medium text-lg">Max</p>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="apy" className="font-medium">
+                APY (%)
+              </label>
+              <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
+                <input disabled
+                  className="bg-transparent py-2 px-4 h-full w-10 sm:w-auto flex-1 focus:outline-none"
+                  type="number"
+                  value={rewardYield}
+                  onChange={e => setRewardYield(parseFloat(e.target.value))}
+                  placeholder={0}
+                  id="apy"
+                />
+                <p style={{ cursor: "pointer" }} onClick={() => setRewardYield(rewardYield)} className="p-1 px-2 font-medium text-lg">Current</p>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="purchasePrice" className="font-medium">
+                TITANO price at purchase ($)
+              </label>
+              <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
+                <input
+                  className="bg-transparent py-2 px-4 h-full w-10 sm:w-auto flex-1 focus:outline-none"
+                  type="number"
+                  value={priceAtPurchase}
+                  onChange={e => setPriceAtPurchase(parseFloat(e.target.value))}
+                  placeholder={0}
+                  id="purchasePrice"
+                />
+                <p style={{ cursor: "pointer" }} onClick={() => setPriceAtPurchase(marketPrice)} className="p-1 px-2 font-medium text-lg">Current</p>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="futurePrice" className="font-medium">
+                Future TITANO price ($)
+              </label>
+              <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
+                <input
+                  className="bg-transparent py-2 px-4 h-full w-10 sm:w-auto flex-1 focus:outline-none"
+                  type="number"
+                  value={futureMarketPrice}
+                  onChange={e => setFutureMarketPrice(parseFloat(e.target.value))}
+                  placeholder={0}
+                  id="futurePrice"
+                />
+                <p style={{ cursor: "pointer" }} onClick={() => setFutureMarketPrice(marketPrice)} className="p-1 px-2 font-medium text-lg">Current</p>
+              </div>
+            </div>
           </div>
           <div className="mt-10">
-            <p>{value} days</p>
+            <p>{`${days} day${days > 1 ? "s" : ""}`}</p>
             <Slider
               min={1}
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
+              value={days}
+              onChange={(e) => setDays(e.target.value)}
               max={365}
               defaultValue={30}
             />
@@ -92,37 +183,17 @@ const Calculator = () => {
                 key={i}
               >
                 <div className=" text-white ">{val.title}</div>
-                <p>{"//"}</p>
+                {/* <p>{"//"}</p> */}
                 <div className=" text-primary ">{val.result}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
 export default Calculator;
 
-const CustomInput = ({
-  label = "TITANO Amount",
-  placeholder = "0",
-  andormentTxt = "Max",
-}) => {
-  return (
-    <div>
-      <label htmlFor={label} className="font-medium">
-        {label}
-      </label>
-      <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
-        <input
-          className="bg-transparent py-2 px-4 h-full w-10 sm:w-auto flex-1 focus:outline-none"
-          type="text"
-          placeholder={placeholder}
-        />
-        <p className="p-1 px-2 font-medium text-lg">{andormentTxt}</p>
-      </div>
-    </div>
-  );
-};
+

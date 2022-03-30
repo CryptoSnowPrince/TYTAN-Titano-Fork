@@ -1,10 +1,16 @@
 import React from "react";
 
-const Account = () => {
+import { useTimer } from "./useTimer";
+
+export const NextRebase = () => {
+  return useTimer(1800 - (Math.floor(new Date().getTime() / 1000 - 1560) % 1800));
+};
+
+const Account = ({ data }) => {
   const accountData = [
     {
       title: "Current TITANO Price",
-      result: "$0.1986 USD",
+      result: "$" + data.marketPrice + "USD",
       color: "primary",
     },
     {
@@ -43,7 +49,7 @@ const Account = () => {
             <h3 className=" text-lightGray-400 uppercase">Total Earned</h3>
             <p className=" text-primary font-semibold text-5xl my-2">$0.00</p>
             <h3 className="  text-xs uppercase text-white">
-              1.71 tytano // <span className="text-primary ">154% </span>
+              1.71 tytano  <span className="text-primary ">154% </span>
               increase
             </h3>
           </div>
@@ -61,7 +67,7 @@ const Account = () => {
               your balance
             </p>
             <p className="text-2xl font-semibold my-1 text-primary">
-              $1,026,228
+              ${(new Intl.NumberFormat("en-US").format(data.balance))}
             </p>
             <p className=" text-white ">1.71 tytan</p>
           </div>
@@ -74,7 +80,7 @@ const Account = () => {
           </div>
           <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
             <p className=" text-lightGray-400 uppercase text-sm">next rebase</p>
-            <p className="text-2xl text-primary font-bold my-1">01:47:21</p>
+            <p className="text-2xl text-primary font-bold my-1">{NextRebase()}</p>
             {/* <p className=" text-lightGray-400 ">0.00 TITANO</p> */}
           </div>
         </div>
@@ -86,7 +92,7 @@ const Account = () => {
               key={i}
             >
               <p className=" text-white font-semibold">{val.title}</p>
-              <span>{"//"}</span>
+              {/* <span>{"//"}</span> */}
               <p className={`${val.color === "primary" && "text-primary"}`}>
                 {val.result}
               </p>
