@@ -229,7 +229,8 @@ function App() {
       }
 
       const Cdata = {
-        balance: 0,
+        balance: balance,
+        marketPrice: marketPrice
       }
       setDashboardData(Ddata);
       setAccountData(Adata);
@@ -246,7 +247,7 @@ function App() {
         <Route path="/dashboard" element={<Layout connect={connect} web3Provider={web3Provider} disconnect={disconnect} showAccountAddress={showAccountAddress} />}>
           <Route path="" element={<Home data={dashboardData} />} />
           <Route path="account" element={<Account data={accountdData} />} />
-          <Route path="calculator" element={<Calculator marketPrice={1.3} titanoBalance={10} />} />
+          <Route path="calculator" element={<Calculator marketPrice={calculatorData.marketPrice} titanoBalance={calculatorData.balance} />} />
         </Route>
       </Routes>
     </>
