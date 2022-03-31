@@ -13,7 +13,7 @@ export function useTimer(secs) {
   const [value, setValue] = useState(secs);
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (value == 0) setValue(1800);
+      if (value === 0) setValue(1800);
       else setValue(value - 1);
     }, 1000);
     // Clear timeout if the component is unmounted
