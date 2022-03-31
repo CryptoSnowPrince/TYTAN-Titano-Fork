@@ -1,39 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import React from "react";
 
 import { useTimer } from "./useTimer";
-
-const GET_TOKEN_PRICE_API_KEY = "f0ae12cdcd6a8343b90e6b8aa4c20f0dce7a8b4495eb4b93ff4d162256b1a432";
-
-const getTokenPrice = async (symbol) => {
-  const api = "https://min-api.cryptocompare.com/data/price?fsym=" + symbol + "&tsyms=USD&api_key=" + GET_TOKEN_PRICE_API_KEY;
-  const res = await axios.get(api);
-  return res.data.USD;
-}
+import { formatCurrency, formatNumber } from "./helper";
 
 export const NextRebase = () => {
   return useTimer(1800 - (Math.floor(new Date().getTime() / 1000 - 1560) % 1800));
 };
 
 const Home = ({ data }) => {
-  const [titanPrice, setTitanPrice] = useState(0);
-
-  useEffect(() => {
-    const init = async () => {
-      const price = await getTokenPrice("TITAN")
-      setTitanPrice(price);
-    }
-    init();
-  }, []);
 
   const datalist = [
     {
       text: "TYTAN Price",
-      ans: "$" + data.marketPrice,
+      ans: formatCurrency(data.marketPrice, 4),
     },
     {
       text: "Market cap",
-      ans: "$" + data.marketPrice * data.circulatingSupply,
+      ans: formatCurrency(data.marketPrice * data.circulatingSupply, 2),
     },
     {
       text: "circulating supply",
@@ -56,8 +39,8 @@ const Home = ({ data }) => {
   const cardData = [
     {
       title: "tytan",
-      price: "$" + data.marketPrice,
-      per: data.usd_24h_change + "%",
+      price: formatCurrency(data.marketPrice, 4),
+      per: (data.usd_24h_change < 0 ? "" : "+") + formatNumber(data.usd_24h_change, 2) + "%",
     },
     {
       title: "market value of treasury assets",
@@ -102,9 +85,6 @@ const Home = ({ data }) => {
                 <span className="text-xl font-normal"> {val.per}</span>{" "}
               </p>
             </div>
-            {/* <div>
-              <div className="dashboard-card-chips py-4"></div>
-            </div> */}
           </div>
         ))}
       </div>

@@ -44,7 +44,7 @@ const Calculator = ({ marketPrice, titanoBalance, calculatorData }) => {
   const topList = [
     {
       title: "TITANO Price",
-      result: "$" + marketPrice,
+      result: "$" + marketPrice.toFixed(5),
     },
     {
       title: "APY:",
@@ -183,7 +183,6 @@ const Calculator = ({ marketPrice, titanoBalance, calculatorData }) => {
                 key={i}
               >
                 <div className=" text-white ">{val.title}</div>
-                {/* <p>{"//"}</p> */}
                 <div className=" text-primary ">{val.result}</div>
               </div>
             ))}

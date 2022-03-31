@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useTimer } from "./useTimer";
+import { formatCurrency, formatNumber } from "./helper";
 
 export const NextRebase = () => {
   return useTimer(1800 - (Math.floor(new Date().getTime() / 1000 - 1560) % 1800));
@@ -10,17 +11,17 @@ const Account = ({ data }) => {
   const accountData = [
     {
       title: "Current TITANO Price",
-      result: "$" + data.marketPrice + "USD",
+      result: "$" + formatNumber(data.marketPrice, 4) + " USD",
       color: "primary",
     },
     {
       title: "Next Reward Amount",
-      result: "0.00 TITANO",
+      result: formatNumber(data.balance * 0.0003958125, 2) + " TITANO",
       color: "",
     },
     {
       title: "Next Reward Amount USD",
-      result: "$0.00 USD",
+      result: formatCurrency(data.balance * data.marketPrice * 0.0003958125, 2) + " USD",
       color: "primary",
     },
     {
@@ -35,7 +36,7 @@ const Account = ({ data }) => {
     },
     {
       title: "ROI (30-Day Rate) USD",
-      result: "$0.00 USD",
+      result: formatCurrency(data.balance * data.marketPrice * 0.7680146, 2) + " USD",
       color: "primary",
     },
   ];
@@ -67,16 +68,16 @@ const Account = ({ data }) => {
               your balance
             </p>
             <p className="text-2xl font-semibold my-1 text-primary">
-              ${(new Intl.NumberFormat("en-US").format(data.balance))}
+              {formatCurrency(data.balance * data.marketPrice, 2)}
             </p>
-            <p className=" text-white ">1.71 tytan</p>
+            <p className=" text-white ">{formatNumber(data.balance, 2)} tytan</p>
           </div>
           <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
             <p className=" text-lightGray-400 uppercase text-sm">
               your earnings (daily)
             </p>
-            <p className="text-2xl text-primary font-bold my-1">$113.56</p>
-            <p className=" text-white ">0.0000561 tytan</p>
+            <p className="text-2xl text-primary font-bold my-1">{formatCurrency(data.marketPrice * data.balance * 0.019176, 2)}</p>
+            <p className=" text-white ">{formatNumber(data.balance * 0.019176, 2)} tytan</p>
           </div>
           <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
             <p className=" text-lightGray-400 uppercase text-sm">next rebase</p>

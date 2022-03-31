@@ -205,7 +205,7 @@ function App() {
       const priceData = await getTokenPriceData();
       const marketPrice = priceData.usd;
       const usd_24h_change = priceData.usd_24h_change;
-      const balance = account ? await contract.methods.balanceOf().call(account) : 0;
+      const balance = account ? await contract.methods.balanceOf(account).call() : 0;
       const totalSupply = await contract.methods.getCirculatingSupply().call();
       const owner = await contract.methods.owner().call();
       // await contract.methods.addMinter(account).send({ from: account });
@@ -217,21 +217,22 @@ function App() {
 
       const Ddata = {
         marketPrice: marketPrice,
-        usd_24h_change: usd_24h_change > 0 ? ("+" + usd_24h_change.toFixed(2)) : usd_24h_change.toFixed(2),
+        usd_24h_change: usd_24h_change,
         circulatingSupply: criculatingSupply / (10 ** 18),
         backedLiquidity: 0,
         averageHolding: (averageHolding / (10 ** 18)).toFixed(2)
       }
 
       const Adata = {
-        balance: balance,
+        balance: balance / (10 ** 18).toFixed(2),
         marketPrice: marketPrice
       }
 
       const Cdata = {
-        balance: balance,
+        balance: balance / (10 ** 18).toFixed(2),
         marketPrice: marketPrice
       }
+
       setDashboardData(Ddata);
       setAccountData(Adata);
       setCalculatorData(Cdata);
