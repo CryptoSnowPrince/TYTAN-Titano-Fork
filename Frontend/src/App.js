@@ -5,7 +5,7 @@ import axios from "axios";
 import Web3Modal from "web3modal";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { providers } from "ethers";
+import { providers, ethers } from "ethers";
 
 import "./App.css";
 import Home from "./pages/Home";
@@ -202,33 +202,21 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
-        console.log(111111111);
         const priceData = await getTokenPriceData();
         const marketPrice = priceData.usd;
         const usd_24h_change = priceData.usd_24h_change;
-        // const balance = 0;
-
-        // const web3 = new Web3(window.ethereum);
-        const web3 = new Web3(provider);
-        const contract = new web3.eth.Contract(ABI, config.parcelforce[config.chainID]);
+        const web3 = new Web3(window.ethereum);
+        const contract = new web3.eth.Contract(ABI, config.titan[config.chainID]);
         const balance = account ? await contract.methods.balanceOf(account).call() : 0;
-        console.log(111111111);
-        const totalSupply = await contract.methods.getCirculatingSupply().call();
-
-        const owner = await contract.methods.owner().call();
-        // await contract.methods.addMinter(account).send({ from: account });
-        // const initValue = await contract.methods.balanceOf(account).call();
-        const criculatingSupply = await contract.methods.getCirculatingSupply().call();
-        // const backedLiquidity = await contract.methods.getCirculatingSupply().call();
-        const averageHolding = await contract.methods.checkSwapThreshold().call();
-        console.log(marketPrice, totalSupply, owner, criculatingSupply / (10 ** 18), averageHolding / (10 ** 18));
+        const totalSupply = await contract.methods.totalSupply().call();
+        const criculatingSupply = totalSupply * 2.75 / 100;
 
         const Ddata = {
           marketPrice: marketPrice,
           usd_24h_change: usd_24h_change,
           circulatingSupply: criculatingSupply / (10 ** 18),
           backedLiquidity: 0,
-          averageHolding: (averageHolding / (10 ** 18)).toFixed(2)
+          averageHolding: 0
         }
 
         const Adata = {

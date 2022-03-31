@@ -3,9 +3,9 @@
 // dotenv.config();
 
 const config = {
-    parcelforce: {
-        56: '',
-        97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
+    titan: {
+        56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
+        97: '',
     },
     BlockExplorerURL: {
         56: "https://bscscan.com",
@@ -25,7 +25,7 @@ const config = {
         97: "0x61",
     },
     INFURA_ID: "9f08884ad87343d89b817b96e19e5808",
-    chainID: 97,
+    chainID: 56,
     privateKey: process.env.PRIVATE_KEY,
 };
 
