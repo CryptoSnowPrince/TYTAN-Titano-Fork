@@ -42,7 +42,7 @@ const Account = ({ data }) => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto uppercase">
+    <div className="mx-auto uppercase">
       <h2 className="mb-6 font-bold uppercase ">Your Account</h2>
       <div className="  grid grid-cols-1 gap-8 mb-10">
         <div className="bg-dark-400 rounded-xl bg-opacity-40 grid grid-cols-2  px-8 py-8">

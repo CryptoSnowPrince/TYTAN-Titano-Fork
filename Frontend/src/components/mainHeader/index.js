@@ -17,9 +17,11 @@ const Header = () => {
             {linkList.map((val, i) => (
               <li key={i} className="uppercase font-bold text-lg text-white">
                 {" "}
-                <a href={val.link} className="p-2">
+                {val.target ? <a href={val.link} className="p-2" target={"_blank"} rel="noreferrer">
                   {val.text}
-                </a>{" "}
+                </a> : <a href={val.link} className="p-2">
+                  {val.text}
+                </a>}{" "}
               </li>
             ))}
           </ul>
@@ -39,18 +41,22 @@ export default Header;
 const linkList = [
   {
     text: "FAQ's",
-    link: "#",
+    link: "#faq",
+    target: false
   },
   {
     text: "Whitepaper",
     link: "#",
+    target: true
   },
   {
     text: "glossary",
-    link: "#",
+    link: "/terms",
+    target: true
   },
   {
     text: "Discord",
-    link: "#",
+    link: "https://discord.com/invite/xxdS792B7q",
+    target: true
   },
 ];

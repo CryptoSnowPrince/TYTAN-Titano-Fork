@@ -8,7 +8,7 @@ export const NextRebase = () => {
 };
 
 const Home = ({ data }) => {
-
+  
   const datalist = [
     {
       text: "TYTAN Price",
@@ -20,11 +20,11 @@ const Home = ({ data }) => {
     },
     {
       text: "circulating supply",
-      ans: data.circulatingSupply,
+      ans: formatCurrency(data.circulatingSupply),
     },
     {
       text: "backed liquidity",
-      ans: data.backedLiquidity + "%",
+      ans: formatNumber(data.backedLiquidity, 2) + "%",
     },
     {
       text: "next rebase",
@@ -32,7 +32,7 @@ const Home = ({ data }) => {
     },
     {
       text: "Average tytan holding",
-      ans: "$" + data.averageHolding,
+      ans: "$" + formatNumber(data.averageHolding, 2),
     },
   ];
 

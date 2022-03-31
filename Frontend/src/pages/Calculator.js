@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Slider from "@mui/material/Slider";
 
-const Calculator = ({ marketPrice, titanoBalance, calculatorData }) => {
+const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
   const [titanoAmount, setTitanoAmount] = useState(0);
   const [rewardYield, setRewardYield] = useState(102483.58);
   const [priceAtPurchase, setPriceAtPurchase] = useState(0);
@@ -44,7 +44,7 @@ const Calculator = ({ marketPrice, titanoBalance, calculatorData }) => {
   const topList = [
     {
       title: "TITANO Price",
-      result: "$" + marketPrice.toFixed(5),
+      result: "$" + (marketPrice * 1.0).toFixed(5),
     },
     {
       title: "APY:",
@@ -81,7 +81,7 @@ const Calculator = ({ marketPrice, titanoBalance, calculatorData }) => {
 
   return (
     <div className="">
-      <div className=" max-w-4xl w-full mx-auto ">
+      <div className=" w-full mx-auto ">
         <h2 className="font-bold text-xl">Calculator</h2>
         {/* <p className="text-xs font-medium">Estimate your returns</p> */}
         <div className="my-8">

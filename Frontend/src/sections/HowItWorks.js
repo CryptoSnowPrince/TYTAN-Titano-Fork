@@ -67,12 +67,13 @@ const HowItWorks = () => {
               <FaDiscord />
             </a>
             <p className="text-primary text-4xl"> Join Our Discord Channel</p>
-            <button
+            <a href="https://discord.com/invite/xxdS792B7q" target={"_blank"} rel="noreferrer"><button
               data-aos="fade-left"
               className="btn py-3 px-6 bg-primary text-black rounded-md font-bold text-sm max-w-max mx-auto md:mx-0"
             >
               JOIN DISCORD
             </button>
+            </a>
           </div>
         </div>
       </div>

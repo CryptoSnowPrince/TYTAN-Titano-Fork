@@ -21,12 +21,14 @@ const Protocol = () => {
                 </p>
 
                 <div className="mt-10 w-36 mx-auto">
-                  <button className="font-bold w-full border-2 text-sm border-white py-2.5 px-8 rounded-lg block mx-auto">
+                  <a href="https://pancakeswap.finance/swap?outputCurrency=0xba96731324de188ebc1ed87ca74544ddebc07d7f" target={"_blank"} rel="noreferrer"><button className="font-bold w-full border-2 text-sm border-white py-2.5 px-8 rounded-lg block mx-auto">
                     AUDIT
                   </button>
-                  <button className="font-bold w-full border-2 text-sm border-primary block mx-auto mt-4 py-2.5 px-4 rounded-lg">
+                  </a>
+                  <a href="https://pancakeswap.finance/swap?outputCurrency=0xba96731324de188ebc1ed87ca74544ddebc07d7f" target={"_blank"} rel="noreferrer"><button className="font-bold w-full border-2 text-sm border-primary block mx-auto mt-4 py-2.5 px-4 rounded-lg">
                     WHITEPAPER
                   </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -58,19 +60,21 @@ const Protocol = () => {
             data-aos="fade-up"
             className=" bg-dark-600  md:bg-transparent py-6 md:py-0 mt-20"
           >
-            <p className="uppercase text-primary text-center  mb-6 font-bold text-xl break-words">
+            <a href="https://bscscan.com/address/0xE5bA47fD94CB645ba4119222e34fB33F59C7CD90" target={"_blank"} rel="noreferrer"><p className="uppercase text-primary text-center  mb-6 font-bold text-xl break-words">
               <span className="text-white">tytan Contract:</span>{" "}
               <span className=" underline text-sm md:text-xl font-bold">
                 0xE5bA47fD94CB645ba4119222e34fB33F59C7CD90
               </span>
             </p>
+            </a>
           </div>
-          <button
+          <a href="https://pancakeswap.finance/swap?outputCurrency=0xba96731324de188ebc1ed87ca74544ddebc07d7f" target={"_blank"} rel="noreferrer"><button
             data-aos="fade-up"
             className="btn text-black py-4 px-6 mt-10 mx-auto block bg-primary uppercase font-semibold rounded-md"
           >
             click here to buy tytan
           </button>
+          </a>
         </div>
       </div>
     </div>

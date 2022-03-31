@@ -14,6 +14,7 @@ import Account from "./pages/Account";
 import Calculator from "./pages/Calculator";
 import Terms from "./pages/Terms";
 import MainHome from "./pages/MainHome";
+import NotFound from './pages/error/NotFound';
 import "aos/dist/aos.css";
 
 import config from "./contract/config";
@@ -21,9 +22,12 @@ import ABI from "./contract/abi/abi.json";
 
 const providerOptions = {
   walletconnect: {
-    package: WalletConnectProvider, // required
+    package: WalletConnectProvider,
     options: {
       infuraId: config.INFURA_ID, // required
+      rpc: {
+        97: config.RpcURL[config.chainID],
+      },
     },
   },
 };
@@ -88,7 +92,7 @@ function App() {
   const { provider, web3Provider } = state;
 
   const checkPath = useCallback(() => {
-    return path.includes("dashboard") || path.includes("account") || path.includes("calculator") ? true : false;
+    return (path.includes("dashboard") || path.includes("account") || path.includes("calculator")) ? true : false;
   }, [path])
 
   const connect = useCallback(async function () {
@@ -202,11 +206,15 @@ function App() {
 
   useEffect(() => {
     const init = async () => {
+      console.log(111111111);
       const priceData = await getTokenPriceData();
       const marketPrice = priceData.usd;
       const usd_24h_change = priceData.usd_24h_change;
+      // const balance = 0;
       const balance = account ? await contract.methods.balanceOf(account).call() : 0;
+      console.log(111111111);
       const totalSupply = await contract.methods.getCirculatingSupply().call();
+
       const owner = await contract.methods.owner().call();
       // await contract.methods.addMinter(account).send({ from: account });
       // const initValue = await contract.methods.balanceOf(account).call();
@@ -245,11 +253,15 @@ function App() {
       <Routes>
         <Route path="/" element={<MainHome />} />
         <Route path="/terms" element={<Terms />} />
-        <Route path="" element={<Layout connect={connect} web3Provider={web3Provider} disconnect={disconnect} showAccountAddress={showAccountAddress} />}>
+        <Route path="/" element={<Layout connect={connect} web3Provider={web3Provider} disconnect={disconnect} showAccountAddress={showAccountAddress} />}>
           <Route path="/dashboard" element={<Home data={dashboardData} />} />
           <Route path="/account" element={<Account data={accountdData} />} />
           <Route path="/calculator" element={<Calculator marketPrice={calculatorData.marketPrice} titanoBalance={calculatorData.balance} />} />
         </Route>
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
       </Routes>
     </>
   );

@@ -11,12 +11,14 @@ const Banner = () => {
             </h2>
           </div>
           <div data-aos="fade-up" className="text-center md:text-auto">
-            <button className="btn text-black block  mx-auto md:mx-0 py-4 px-6 bg-primary uppercase font-semibold rounded-md">
+            <a href="https://pancakeswap.finance/swap?outputCurrency=0xba96731324de188ebc1ed87ca74544ddebc07d7f" target={"_blank"} rel="noreferrer"><button className="btn text-black block  mx-auto md:mx-0 py-4 px-6 bg-primary uppercase font-semibold rounded-md">
               click here to buy tytan
             </button>
-            <button className="btn mx-auto md:mx-0 border-2 border-primary text-primary py-2.5 px-6 block mt-6 rounded-md">
+            </a>
+            <a href="https://t.me/titano_finance" target={"_blank"} rel="noreferrer"><button className="btn mx-auto md:mx-0 border-2 border-primary text-primary py-2.5 px-6 block mt-6 rounded-md">
               GO TO THE CHART
             </button>
+            </a>
           </div>
         </div>
       </div>
