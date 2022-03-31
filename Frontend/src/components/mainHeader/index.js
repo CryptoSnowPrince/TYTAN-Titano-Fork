@@ -23,9 +23,11 @@ const Header = () => {
               </li>
             ))}
           </ul>
-          <button className="m-2 block mx-auto md:mx-2 mt-8 md:mt-2 bg-primary text-black  py-3.5 px-10  md:py-2 rounded-md md:px-6 uppercase  font-bold btn">
-            Open App
-          </button>
+          <Link to="/dashboard">
+            <button className="m-2 block mx-auto md:mx-2 mt-8 md:mt-2 bg-primary text-black  py-3.5 px-10  md:py-2 rounded-md md:px-6 uppercase  font-bold btn">
+              Open App
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import Arrow from "../assets/arrow.svg";
 
 const Earn = () => {
@@ -40,12 +42,16 @@ const Earn = () => {
               *Earnings are calculated in a scenario where the SAP sustains the
               rebase interest for 365 days.
             </p>
-            <button className="btn hidden md:inline-block uppercase  bg-primary bg-opacity-10 border-2 border-primary  text-primary text-xs py-1.5 rounded-md px-4 mt-8">
-              Open App
-            </button>
-            <button className="btn md:hidden py-3.5 mt-5 font-bold rounded-md bg-primary text-black px-10">
-              OPEN APP
-            </button>
+            <Link to="/dashboard">
+              <button className="btn hidden md:inline-block uppercase  bg-primary bg-opacity-10 border-2 border-primary  text-primary text-xs py-1.5 rounded-md px-4 mt-8">
+                Open App
+              </button>
+            </Link>
+            <Link to="/dashboard">
+              <button className="btn md:hidden py-3.5 mt-5 font-bold rounded-md bg-primary text-black px-10">
+                OPEN APP
+              </button>
+            </Link>
           </div>
         </div>
       </div>

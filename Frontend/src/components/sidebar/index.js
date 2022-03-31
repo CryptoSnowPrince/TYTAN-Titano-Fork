@@ -14,7 +14,7 @@ const Sidebar = ({ show, setShow }) => {
   return (
     <div className={`sidebar ${show && "active"}  flex flex-col`}>
       <div className="grid grid-flow-col gap-x-3 justify-start  items-center sidebar-logo px-5">
-        <Link to="">
+        <Link to="../">
           <img src={Logo} alt="" />
         </Link>
       </div>
@@ -66,7 +66,7 @@ const menuList = [
   {
     text: "Dashboard",
     icon: <DashboardIcon />,
-    link: "",
+    link: "dashboard",
   },
   {
     text: "Account",
@@ -81,12 +81,12 @@ const menuList = [
   {
     text: "Swap",
     icon: <OfflineBoltIcon />,
-    link: "https://google.com",
+    link: "https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f",
   },
   {
     text: "Docs",
     icon: <LibraryBooksIcon />,
-    link: "https://google.com",
+    link: "https://docs.titano.finance/",
   },
 ];
 
@@ -165,9 +165,8 @@ function CustomLink({ children, to, ...props }) {
   return (
     <div>
       <Link
-        className={`custom-link ${
-          match && "text-primary"
-        } grid grid-flow-col font-medium  uppercase text-base mb-2 justify-start gap-x-2 items-center py-2 px-6 hover:bg-primary-400 rounded-lg my-1 `}
+        className={`custom-link ${match && "text-primary"
+          } grid grid-flow-col font-medium  uppercase text-base mb-2 justify-start gap-x-2 items-center py-2 px-6 hover:bg-primary-400 rounded-lg my-1 `}
         to={to}
         {...props}
       >

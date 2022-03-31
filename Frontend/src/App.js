@@ -88,7 +88,7 @@ function App() {
   const { provider, web3Provider } = state;
 
   const checkPath = useCallback(() => {
-    return path.includes("dashboard") ? true : false;
+    return path.includes("dashboard") || path.includes("account") || path.includes("calculator") ? true : false;
   }, [path])
 
   const connect = useCallback(async function () {
@@ -245,10 +245,10 @@ function App() {
       <Routes>
         <Route path="/" element={<MainHome />} />
         <Route path="/terms" element={<Terms />} />
-        <Route path="/dashboard" element={<Layout connect={connect} web3Provider={web3Provider} disconnect={disconnect} showAccountAddress={showAccountAddress} />}>
-          <Route path="" element={<Home data={dashboardData} />} />
-          <Route path="account" element={<Account data={accountdData} />} />
-          <Route path="calculator" element={<Calculator marketPrice={calculatorData.marketPrice} titanoBalance={calculatorData.balance} />} />
+        <Route path="" element={<Layout connect={connect} web3Provider={web3Provider} disconnect={disconnect} showAccountAddress={showAccountAddress} />}>
+          <Route path="/dashboard" element={<Home data={dashboardData} />} />
+          <Route path="/account" element={<Account data={accountdData} />} />
+          <Route path="/calculator" element={<Calculator marketPrice={calculatorData.marketPrice} titanoBalance={calculatorData.balance} />} />
         </Route>
       </Routes>
     </>
