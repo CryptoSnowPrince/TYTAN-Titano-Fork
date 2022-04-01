@@ -1,9 +1,5 @@
-// const dotenv = require("dotenv");
-
-// dotenv.config();
-
 const config = {
-    titan: {
+    tytan: {
         56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
         97: '',
     },
@@ -24,9 +20,9 @@ const config = {
         56: "0x38",
         97: "0x61",
     },
-    INFURA_ID: "9f08884ad87343d89b817b96e19e5808",
+    INFURA_ID: process.env.REACT_APP_INFURA_ID,
     chainID: 56,
-    privateKey: process.env.PRIVATE_KEY,
+    privateKey: process.env.REACT_APP_PRIVATE_KEY,
 };
 
 export default config;
