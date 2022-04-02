@@ -3,7 +3,7 @@ import privateInfo from "./private";
 const config = {
     tytan: {
         56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
-        97: '',
+        97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
     },
     BlockExplorerURL: {
         56: "https://bscscan.com",
@@ -23,7 +23,7 @@ const config = {
         97: "0x61",
     },
     INFURA_ID: privateInfo.REACT_APP_INFURA_ID,
-    chainID: 56,
+    chainID: 97,
     privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
 };
 
