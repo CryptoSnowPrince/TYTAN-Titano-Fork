@@ -23,7 +23,7 @@ const config = {
         97: "0x61",
     },
     INFURA_ID: privateInfo.REACT_APP_INFURA_ID,
-    chainID: 97,
+    chainID: 56,
     privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
 };
 
