@@ -205,7 +205,8 @@ function App() {
         const priceData = await getTokenPriceData();
         const marketPrice = priceData.usd;
         const usd_24h_change = priceData.usd_24h_change;
-        const web3 = new Web3(window.ethereum);
+        // const web3 = new Web3(window.ethereum);
+        const web3 = new Web3(config.RpcURL.https[config.chainID]);
         const contract = new web3.eth.Contract(ABI, config.tytan[config.chainID]);
         const balance = account ? await contract.methods.balanceOf(account).call() : 0;
         const totalSupply = await contract.methods.totalSupply().call();

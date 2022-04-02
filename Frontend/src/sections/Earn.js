@@ -42,7 +42,7 @@ const Earn = () => {
               *Earnings are calculated in a scenario where the SAP sustains the
               rebase interest for 365 days.
             </p>
-            <Link to="/dashboard">
+            <Link to="/dashboard" target="_blank">
               <button className="btn hidden md:inline-block uppercase  bg-primary bg-opacity-10 border-2 border-primary  text-primary text-xs py-1.5 rounded-md px-4 mt-8">
                 Open App
               </button>

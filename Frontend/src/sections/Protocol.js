@@ -1,4 +1,7 @@
 import React from "react";
+import config from "../contract/config";
+
+const scanTytan = config.BlockExplorerURL[config.chainID] + "/address/" + config.tytan[config.chainID];
 
 const Protocol = () => {
   return (
@@ -60,20 +63,27 @@ const Protocol = () => {
             data-aos="fade-up"
             className=" bg-dark-600  md:bg-transparent py-6 md:py-0 mt-20"
           >
-            <a href="https://bscscan.com/address/0xE5bA47fD94CB645ba4119222e34fB33F59C7CD90" target={"_blank"} rel="noreferrer"><p className="uppercase text-primary text-center  mb-6 font-bold text-xl break-words">
-              <span className="text-white">tytan Contract:</span>{" "}
-              <span className=" underline text-sm md:text-xl font-bold">
-                0xE5bA47fD94CB645ba4119222e34fB33F59C7CD90
-              </span>
-            </p>
+            <a
+              href={scanTytan}
+              target={"_blank"}
+              rel="noreferrer">
+              <p className="uppercase text-primary text-center  mb-6 font-bold text-xl break-words">
+                <span className="text-white">tytan Contract:</span>{" "}
+                <span className=" underline text-sm md:text-xl font-bold">
+                  {config.tytan[config.chainID]}
+                </span>
+              </p>
             </a>
           </div>
-          <a href="https://pancakeswap.finance/swap?outputCurrency=0xba96731324de188ebc1ed87ca74544ddebc07d7f" target={"_blank"} rel="noreferrer"><button
-            data-aos="fade-up"
-            className="btn text-black py-4 px-6 mt-10 mx-auto block bg-primary uppercase font-semibold rounded-md"
-          >
-            click here to buy tytan
-          </button>
+          <a
+            href="https://pancakeswap.finance/swap?outputCurrency=0xba96731324de188ebc1ed87ca74544ddebc07d7f"
+            target={"_blank"}
+            rel="noreferrer"><button
+              data-aos="fade-up"
+              className="btn text-black py-4 px-6 mt-10 mx-auto block bg-primary uppercase font-semibold rounded-md"
+            >
+              click here to buy tytan
+            </button>
           </a>
         </div>
       </div>

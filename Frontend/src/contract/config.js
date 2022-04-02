@@ -1,4 +1,4 @@
-import privateInfo from "./contract/private";
+import privateInfo from "./private";
 
 const config = {
     tytan: {
