@@ -1,3 +1,5 @@
+import privateInfo from "./contract/private";
+
 const config = {
     tytan: {
         56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
@@ -20,9 +22,9 @@ const config = {
         56: "0x38",
         97: "0x61",
     },
-    INFURA_ID: process.env.REACT_APP_INFURA_ID,
+    INFURA_ID: privateInfo.REACT_APP_INFURA_ID,
     chainID: 56,
-    privateKey: process.env.REACT_APP_PRIVATE_KEY,
+    privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
 };
 
 export default config;
