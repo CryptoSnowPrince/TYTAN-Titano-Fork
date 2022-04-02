@@ -5,7 +5,7 @@ import axios from "axios";
 import Web3Modal from "web3modal";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { providers, ethers } from "ethers";
+import { providers } from "ethers";
 
 import "./App.css";
 import Home from "./pages/Home";
@@ -26,7 +26,8 @@ const providerOptions = {
     options: {
       infuraId: config.INFURA_ID, // required
       rpc: {
-        97: config.RpcURL[config.chainID],
+        56: config.RpcURL.https[config.chainID],
+        97: config.RpcURL.https[config.chainID],
       },
     },
   },
