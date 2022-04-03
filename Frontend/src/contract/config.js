@@ -9,6 +9,18 @@ const config = {
         56: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
         97: "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
     },
+    pair: {
+        56: "0x44f382cec44c33067cb12fcfc08457eb6734be02",
+        97: "0x123456ababababababababababababababababab",
+    },
+    Treasury: {
+        56: "0x4DD90D3cE962039A3c66d613207aC2d449dFa04F",
+        97: "0x4DD90D3cE962039A3c66d613207aC2d449dFa04F",
+    },
+    RFV: {
+        56: "0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1",
+        97: "0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1",
+    },
     BlockExplorerURL: {
         56: "https://bscscan.com",
         97: "https://testnet.bscscan.com",
@@ -32,14 +44,6 @@ const config = {
     X_API_KEY: 0, // moralis
     APY: 102483.58,
     DAILY: 1.9176,
-    Treasury: {
-        56: "0x4DD90D3cE962039A3c66d613207aC2d449dFa04F",
-        97: "0x4DD90D3cE962039A3c66d613207aC2d449dFa04F",
-    },
-    RFV: {
-        56: "0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1",
-        97: "0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1",
-    },
     privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
 };
 

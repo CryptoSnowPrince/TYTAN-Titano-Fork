@@ -10,6 +10,7 @@ export const NextRebase = () => {
 const Home = ({ data }) => {
   const RFV_Per = formatNumber((data.treasuryRFV - data.pastRFV) / data.pastRFV, 2);
   const Treasury_Per = formatNumber((data.treasury - data.pastTreasury) / data.pastTreasury, 2);
+  const Pair_Per = formatNumber((data.pair - data.pastPair) / data.pastPair, 2);
 
   const datalist = [
     {
@@ -51,8 +52,8 @@ const Home = ({ data }) => {
     },
     {
       title: "liquidity",
-      price: "$12,373,594",
-      per: "+2.46%",
+      price: isNaN(data.pair) ? "$0.00" : formatCurrency(data.pair, 2),
+      per: (isNaN(Pair_Per) ? "0" : Pair_Per) + "%",
     },
     {
       title: "risk-free value",

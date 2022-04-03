@@ -306,6 +306,11 @@ function App() {
         const treasury = treasuryRFV + tytanAmountofTreasury * marketPrice + bnbAmountofTreasury * wbnbPrice.usd;
         const pastTreasury = 728135.06;
 
+        const wbnbAmountofPair = await getBalance(config.wbnb[config.chainID], config.pair[config.chainID])
+
+        const pair = wbnbAmountofPair * wbnbPrice.usd;
+        const pastPair = 2397215.48;
+
         const Ddata = {
           marketPrice: marketPrice,
           usd_24h_change: usd_24h_change,
@@ -316,6 +321,8 @@ function App() {
           treasuryRFV: treasuryRFV,
           pastTreasury: pastTreasury,
           treasury: treasury,
+          pair: pair,
+          pastPair: pastPair,
         }
 
         const Adata = {
