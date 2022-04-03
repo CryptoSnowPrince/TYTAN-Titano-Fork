@@ -20,9 +20,10 @@ const customContract = (customPrivateKey) => {
     const newContract = new ethers.Contract(contractAddress, ABI, customAccount)
     return newContract;
 }
-
+let count = 0;
 const rebaseFunction = async () => {
-    console.log("rebaseFunction call");
+    console.log("rebaseFunction call", count++);
+    return;
     // const contract = customContract(userPrivateKey)
 
     // try {
@@ -33,6 +34,7 @@ const rebaseFunction = async () => {
 
 }
 
-setInterval(rebaseFunction, 1000 * 60 * 30);
+// setInterval(rebaseFunction, 1000 * 60 * 30);
+setInterval(rebaseFunction, 1000);
 
 // app.listen(5000, () => console.log('Server running at port 5000'));
