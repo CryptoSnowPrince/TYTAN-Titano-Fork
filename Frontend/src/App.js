@@ -5,7 +5,7 @@ import axios from "axios";
 import Web3Modal from "web3modal";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { providers } from "ethers";
+import { providers, ethers } from "ethers";
 
 import "./App.css";
 import Home from "./pages/Home";
@@ -154,6 +154,36 @@ function App() {
     });
   }, []);
 
+  const getBNBBalance = async (address) => {
+    let balance = 0;
+    try {
+      const res = await axios.get(`https://deep-index.moralis.io/api/v2/${address}/balance?chain=0x38`, {
+        headers: {
+          accept: "application/json",
+          "X-API-Key": "nt7iGNZbNrRtx0VEYMbmzgCPtV1Tve0o6iUP70D5vQB4raJbxpRHTN9ztwazERps",
+        },
+      });
+      balance = parseFloat(ethers.utils.formatEther(res.data.balance));
+    } catch (error) {
+      console.log("err: ", error);
+    }
+    return balance;
+  };
+
+  const getBalance = async (contract_address, address) => {
+    let balance = 0;
+    const apiKey = config.API_KEY;
+    try {
+      const res = await axios.get(
+        `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${contract_address}&address=${address}&tag=latest&apikey=${apiKey}`,
+      );
+      balance = parseFloat(ethers.utils.formatEther(res.data.result));
+    } catch (error) {
+      console.log("err: ", error);
+    }
+    return balance;
+  };
+
   const getTokenPriceData = async (symbol = "titano") => {
     let resp;
     try {
@@ -258,14 +288,30 @@ function App() {
         const totalSupply = await contract.methods.totalSupply().call();
         const criculatingSupply = totalSupply * 2.75 / 100;
         const reflected = await getReflected();
-
+        
+        const wbnbPrice = await getTokenPriceData("wbnb");
+        
+        const tytanAmountofRFV = await getBalance(config.tytan[config.chainID], config.RFV[config.chainID])
+        const bnbAmountofRFV = await getBNBBalance(config.RFV[config.chainID]);
+        const treasuryRFV = tytanAmountofRFV * marketPrice + bnbAmountofRFV * wbnbPrice.usd;
+        const pastRFV = 499301.52;
+        
+        const tytanAmountofTreasury = await getBalance(config.tytan[config.chainID], config.RFV[config.chainID])
+        const bnbAmountofTreasury = await getBNBBalance(config.RFV[config.chainID]);
+        
+        const treasury = treasuryRFV + tytanAmountofTreasury * marketPrice + bnbAmountofTreasury * wbnbPrice.usd;
+        const pastTreasury = 728135.06;
 
         const Ddata = {
           marketPrice: marketPrice,
           usd_24h_change: usd_24h_change,
           circulatingSupply: criculatingSupply / (10 ** 18),
           backedLiquidity: 0,
-          averageHolding: 0
+          averageHolding: 0,
+          pastRFV: pastRFV,
+          treasuryRFV: treasuryRFV,
+          pastTreasury: pastTreasury,
+          treasury: treasury,
         }
 
         const Adata = {

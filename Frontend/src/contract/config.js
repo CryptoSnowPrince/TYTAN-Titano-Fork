@@ -5,6 +5,10 @@ const config = {
         56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
         97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
     },
+    wbnb: {
+        56: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        97: "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+    },
     BlockExplorerURL: {
         56: "https://bscscan.com",
         97: "https://testnet.bscscan.com",
@@ -22,11 +26,20 @@ const config = {
         56: "0x38",
         97: "0x61",
     },
+    chainID: 56,
     INFURA_ID: privateInfo.REACT_APP_INFURA_ID,
     API_KEY: privateInfo.REACT_APP_API_KEY,
+    X_API_KEY: 0, // moralis
     APY: 102483.58,
     DAILY: 1.9176,
-    chainID: 56,
+    Treasury: {
+        56: "0x4DD90D3cE962039A3c66d613207aC2d449dFa04F",
+        97: "0x4DD90D3cE962039A3c66d613207aC2d449dFa04F",
+    },
+    RFV: {
+        56: "0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1",
+        97: "0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1",
+    },
     privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
 };
 

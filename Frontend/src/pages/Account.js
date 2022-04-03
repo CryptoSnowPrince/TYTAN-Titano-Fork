@@ -106,7 +106,6 @@ const Account = ({ data }) => {
           <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
             <p className=" text-lightGray-400 uppercase text-sm">next rebase</p>
             <p className="text-2xl text-primary font-bold my-1">{NextRebase()}</p>
-            {/* <p className=" text-lightGray-400 ">0.00 TITANO</p> */}
           </div>
         </div>
 
@@ -117,7 +116,6 @@ const Account = ({ data }) => {
               key={i}
             >
               <p className=" text-white font-semibold">{val.title}</p>
-              {/* <span>{"//"}</span> */}
               <p className={`${val.color === "primary" && "text-primary"}`}>
                 {val.result}
               </p>

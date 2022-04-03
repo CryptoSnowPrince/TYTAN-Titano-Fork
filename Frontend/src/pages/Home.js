@@ -8,7 +8,9 @@ export const NextRebase = () => {
 };
 
 const Home = ({ data }) => {
-  
+  const RFV_Per = formatNumber((data.treasuryRFV - data.pastRFV) / data.pastRFV, 2);
+  const Treasury_Per = formatNumber((data.treasury - data.pastTreasury) / data.pastTreasury, 2);
+
   const datalist = [
     {
       text: "TYTAN Price",
@@ -44,8 +46,8 @@ const Home = ({ data }) => {
     },
     {
       title: "market value of treasury assets",
-      price: "$1,026,228",
-      per: "+2.4%",
+      price: isNaN(data.treasury) ? "$0.00" : formatCurrency(data.treasury, 2),
+      per: (isNaN(Treasury_Per) ? "0" : Treasury_Per) + "%",
     },
     {
       title: "liquidity",
@@ -54,8 +56,8 @@ const Home = ({ data }) => {
     },
     {
       title: "risk-free value",
-      price: "$2,903,111",
-      per: "+13.75%",
+      price: isNaN(data.treasuryRFV) ? "$0.00" : formatCurrency(data.treasuryRFV, 2),
+      per: (isNaN(RFV_Per) ? "0" : RFV_Per) + "%",
     },
   ];
 
