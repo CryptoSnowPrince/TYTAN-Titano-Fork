@@ -102,7 +102,9 @@ const Account = ({ data }) => {
               {formatCurrency(data.marketPrice * data.balance * 0.019176, 2)}
             </p>
             <p className=" text-white ">
-              {formatNumber(data.balance * config.DAILY / 100, 2)} tytan
+              {isNaN(data.balance * config.DAILY) ?
+                "0.00" :
+                formatNumber(data.balance * config.DAILY / 100, 2)} tytan
             </p>
           </div>
           <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
