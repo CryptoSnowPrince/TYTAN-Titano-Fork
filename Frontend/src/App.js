@@ -182,7 +182,7 @@ function App() {
         });
         const movements = txndata.data.result.reduce(
           (acc, data) => {
-            if (data.contractAddress !== config.tytan[config.chainID]) {
+            if (data.contractAddress !== config.tytan[config.chainID].toLowerCase()) {
               return acc;
             }
             let value = data.value / 10 ** 18;
