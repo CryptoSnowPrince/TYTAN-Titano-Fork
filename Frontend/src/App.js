@@ -161,7 +161,7 @@ function App() {
       cache: new InMemoryCache(),
     });
 
-  const apolloExt = async (queryString, uri) => {
+  const apolloExt = useCallback(async (queryString, uri) => {
     try {
       const data = await extClient(uri).query({
         query: gql(queryString),
@@ -170,9 +170,9 @@ function App() {
     } catch (err) {
       console.error("external graph ql api error: ", err);
     }
-  };
+  }, []);
 
-  const getAverageHolding = async () => {
+  const getAverageHolding = useCallback(async () => {
     let holders = 0;
     const query = `
     query {
@@ -190,7 +190,7 @@ function App() {
       console.log("err: ", error);
     }
     return holders;
-  };
+  }, [apolloExt]);
 
   const getBNBBalance = async (address) => {
     let balance = 0;
@@ -319,7 +319,6 @@ function App() {
         const priceData = await getTokenPriceData("titano");
         const marketPrice = priceData.usd;
         const usd_24h_change = priceData.usd_24h_change;
-        // const web3 = new Web3(window.ethereum);
         const web3 = new Web3(config.RpcURL.https[config.chainID]);
         const contract = new web3.eth.Contract(ABI, config.tytan[config.chainID]);
         const balance = account ? await contract.methods.balanceOf(account).call() : 0;
@@ -387,7 +386,7 @@ function App() {
       }
     }
     checkPath() && init();
-  }, [checkPath, account, provider, getReflected])
+  }, [checkPath, account, provider, getReflected, getAverageHolding])
 
   return (
     <>
