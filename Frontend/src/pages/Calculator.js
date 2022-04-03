@@ -44,7 +44,7 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
 
   const topList = [
     {
-      title: "TITANO Price",
+      title: "TYTAN Price",
       result: "$" + (marketPrice * 1.0).toFixed(5),
     },
     {
@@ -52,8 +52,8 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
       result: (new Intl.NumberFormat("en-US").format(rewardYield)) + "%",
     },
     {
-      title: "Your TITANO Balance",
-      result: (titanoAmount || 0).toFixed(2) + " TITANO",
+      title: "Your TYTAN Balance",
+      result: (titanoAmount || 0).toFixed(2) + " TYTAN",
     },
   ];
 
@@ -63,7 +63,7 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
       result: "$" + calcCurrentWealth().toFixed(2) + " Usd",
     },
     {
-      title: "titano rewards estimation",
+      title: "tytan rewards estimation",
       result: rewardsEstimation.toFixed(2) + " tytan",
     },
     {
@@ -104,7 +104,7 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
           <div className=" grid md:grid-cols-2 mt-4 gap-10">
             <div>
               <label htmlFor="amount" className="font-medium">
-                TITANO Amount
+                TYTAN Amount
               </label>
               <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
                 <input
@@ -136,7 +136,7 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
             </div>
             <div>
               <label htmlFor="purchasePrice" className="font-medium">
-                TITANO price at purchase ($)
+                TYTAN price at purchase ($)
               </label>
               <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
                 <input
@@ -152,7 +152,7 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
             </div>
             <div>
               <label htmlFor="futurePrice" className="font-medium">
-                Future TITANO price ($)
+                Future TYTAN price ($)
               </label>
               <div className=" rounded-lg border mt-1 border-white overflow-hidden flex flex-wrap items-center w-full">
                 <input

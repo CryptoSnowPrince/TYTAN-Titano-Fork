@@ -24,7 +24,7 @@ const Header = ({ show, setShow, connect, web3Provider, disconnect, showAccountA
             {/* <span className="text-xl">
               <HiInformationCircle />
             </span> */}
-            <span className="text-primary"> TITANO</span>
+            <span className="text-primary"> TYTAN</span>
           </p>
         </button>
         {!web3Provider ? (<button className="font-medium py-2.5 px-4 text-white border border-primary rounded-md" onClick={connect}>

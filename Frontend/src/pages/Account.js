@@ -25,13 +25,13 @@ const Account = ({ data }) => {
 
   const accountData = [
     {
-      title: "Current TITANO Price",
+      title: "Current TYTAN Price",
       result: "$" + formatNumber(data.marketPrice, 4) + " USD",
       color: "primary",
     },
     {
       title: "Next Reward Amount",
-      result: formatNumber(data.balance * 0.0003958125, 2) + " TITANO",
+      result: formatNumber(data.balance * 0.0003958125, 2) + " TYTAN",
       color: "",
     },
     {

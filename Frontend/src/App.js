@@ -184,7 +184,7 @@ function App() {
     return balance;
   };
 
-  const getTokenPriceData = async (symbol = "titano") => {
+  const getTokenPriceData = async (symbol = "tytan") => {
     let resp;
     try {
       resp = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd&include_24hr_vol=true&include_24hr_change=true`);
@@ -278,7 +278,7 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
-        const priceData = await getTokenPriceData();
+        const priceData = await getTokenPriceData("titano");
         const marketPrice = priceData.usd;
         const usd_24h_change = priceData.usd_24h_change;
         // const web3 = new Web3(window.ethereum);
