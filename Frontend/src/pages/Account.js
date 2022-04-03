@@ -9,12 +9,16 @@ export const NextRebase = () => {
 };
 
 const Account = ({ data }) => {
-  const APY = (new Intl.NumberFormat("en-US").format(config.APY)) + "%"
-  const DAILY = (new Intl.NumberFormat("en-US").format(config.DAILY)) + "% DAILY"
-  console.log("===================");
-  console.log("data.reflected", data.reflected);
-  console.log("data.marketPrice", data.marketPrice);
-  console.log("data.balance", data.balance);
+  const APY = (new Intl.NumberFormat("en-US").format(config.APY)) + "%";
+  const DAILY = (new Intl.NumberFormat("en-US").format(config.DAILY)) + "% DAILY";
+  // console.log("typeof balance", typeof data.balance);
+  // console.log("typeof reflected", typeof data.reflected);
+  const Reflected = () => {
+    if(typeof data.balance) return 0;
+    if(data.reflected === "undefined") return 0;
+    return data.balance - data.reflected;
+  }
+
   const accountData = [
     {
       title: "Current TITANO Price",
