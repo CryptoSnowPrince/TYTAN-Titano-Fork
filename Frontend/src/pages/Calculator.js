@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Slider from "@mui/material/Slider";
+import config from "../contract/config";
 
 const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
   const [titanoAmount, setTitanoAmount] = useState(0);
-  const [rewardYield, setRewardYield] = useState(102483.58);
+  const [rewardYield, setRewardYield] = useState(config.APY);
   const [priceAtPurchase, setPriceAtPurchase] = useState(0);
   const [futureMarketPrice, setFutureMarketPrice] = useState(0);
   const [days, setDays] = useState(30);
@@ -189,7 +190,7 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

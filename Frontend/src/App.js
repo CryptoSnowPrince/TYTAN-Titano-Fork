@@ -163,6 +163,54 @@ function App() {
     }
   }
 
+  const getReflected = async () => {
+    let reflected = 0;
+    console.log("getReflected", account)
+    if (account) {
+      try {
+        let txndata = await axios.get("https://api.bscscan.com/api", {
+          timeout: 30000,
+          params: {
+            module: "account",
+            action: "tokentx",
+            address: account,
+            contractaddress: config.tytan[config.chainID],
+            startblock: 0,
+            endblock: 99999999,
+            sort: "desc",
+            apikey: config.API_KEY,
+          },
+        });
+        const movements = txndata.data.result.reduce(
+          (acc, data) => {
+            if (data.contractAddress !== config.tytan[config.chainID]) {
+              return acc;
+            }
+            let value = data.value / 10 ** 18;
+            let isSell = data.from.toLowerCase() === account.toLowerCase();
+
+            if (isSell) {
+              acc.sold += value;
+            } else {
+              acc.bought += value;
+            }
+            return acc;
+          },
+          {
+            sold: 0,
+            bought: 0,
+          },
+        );
+        reflected = movements.bought - movements.sold;
+        console.log("try reflected", reflected);
+      } catch (e) {
+        console.warn("failed contract calls in slice", e);
+      }
+    }
+    console.log("reflected", reflected);
+    return reflected;
+  }
+
   useEffect(() => {
     if (web3Modal.cachedProvider) {
       connect();
@@ -212,6 +260,8 @@ function App() {
         const balance = account ? await contract.methods.balanceOf(account).call() : 0;
         const totalSupply = await contract.methods.totalSupply().call();
         const criculatingSupply = totalSupply * 2.75 / 100;
+        const reflected = getReflected();
+
 
         const Ddata = {
           marketPrice: marketPrice,
@@ -223,7 +273,8 @@ function App() {
 
         const Adata = {
           balance: balance / (10 ** 18).toFixed(2),
-          marketPrice: marketPrice
+          marketPrice: marketPrice,
+          reflected: reflected
         }
 
         const Cdata = {

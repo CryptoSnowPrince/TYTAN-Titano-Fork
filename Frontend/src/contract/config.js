@@ -23,6 +23,9 @@ const config = {
         97: "0x61",
     },
     INFURA_ID: privateInfo.REACT_APP_INFURA_ID,
+    API_KEY: privateInfo.REACT_APP_API_KEY,
+    APY: 102483.58,
+    DAILY: 1.9176,
     chainID: 56,
     privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
 };

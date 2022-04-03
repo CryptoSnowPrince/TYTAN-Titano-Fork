@@ -2,12 +2,19 @@ import React from "react";
 
 import { useTimer } from "./useTimer";
 import { formatCurrency, formatNumber } from "./helper";
+import config from "../contract/config";
 
 export const NextRebase = () => {
   return useTimer(1800 - (Math.floor(new Date().getTime() / 1000 - 1560) % 1800));
 };
 
 const Account = ({ data }) => {
+  const APY = (new Intl.NumberFormat("en-US").format(config.APY)) + "%"
+  const DAILY = (new Intl.NumberFormat("en-US").format(config.DAILY)) + "% DAILY"
+  console.log("===================");
+  console.log("data.reflected", data.reflected);
+  console.log("data.marketPrice", data.marketPrice);
+  console.log("data.balance", data.balance);
   const accountData = [
     {
       title: "Current TITANO Price",
@@ -57,9 +64,9 @@ const Account = ({ data }) => {
           <div>
             <h3 className=" text-lightGray-400 uppercase">apy</h3>
             <p className=" text-primary font-semibold text-5xl my-2">
-              101,034%
+              {APY}
             </p>
-            <h3 className=" text-xs text-white">0.00 TITANO (0% increase)</h3>
+            <h3 className=" text-xs text-white">{DAILY}</h3>
           </div>
         </div>
         <div className=" grid  grid-cols-1 sm:grid-cols-3 gap-x-6 text-center">
@@ -77,7 +84,7 @@ const Account = ({ data }) => {
               your earnings (daily)
             </p>
             <p className="text-2xl text-primary font-bold my-1">{formatCurrency(data.marketPrice * data.balance * 0.019176, 2)}</p>
-            <p className=" text-white ">{formatNumber(data.balance * 0.019176, 2)} tytan</p>
+            <p className=" text-white ">{formatNumber(data.balance * config.DAILY/100, 2)} tytan</p>
           </div>
           <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
             <p className=" text-lightGray-400 uppercase text-sm">next rebase</p>
