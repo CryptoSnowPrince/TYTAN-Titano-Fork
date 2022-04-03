@@ -113,7 +113,7 @@ function App() {
         const account = await signer.getAddress();
         const network = await web3Provider.getNetwork();
         const show_address =
-          account.slice(0, 5) + "..." + account.slice(-6, account.length);
+          account.slice(0, 7) + "..." + account.slice(-4, account.length);
         setShowAccountAddress(show_address);
         setAccount(account);
         dispatch({
