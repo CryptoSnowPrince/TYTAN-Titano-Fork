@@ -288,17 +288,21 @@ function App() {
         const totalSupply = await contract.methods.totalSupply().call();
         const criculatingSupply = totalSupply * 2.75 / 100;
         const reflected = await getReflected();
-        
+
         const wbnbPrice = await getTokenPriceData("wbnb");
-        
-        const tytanAmountofRFV = await getBalance(config.tytan[config.chainID], config.RFV[config.chainID])
-        const bnbAmountofRFV = await getBNBBalance(config.RFV[config.chainID]);
+
+        const tytanAmountofRFV =
+          await getBalance(config.tytan[config.chainID], config.RFV[config.chainID]);
+        const bnbAmountofRFV =
+          await getBNBBalance(config.RFV[config.chainID]);
         const treasuryRFV = tytanAmountofRFV * marketPrice + bnbAmountofRFV * wbnbPrice.usd;
         const pastRFV = 499301.52;
-        
-        const tytanAmountofTreasury = await getBalance(config.tytan[config.chainID], config.RFV[config.chainID])
-        const bnbAmountofTreasury = await getBNBBalance(config.RFV[config.chainID]);
-        
+
+        const tytanAmountofTreasury =
+          await getBalance(config.tytan[config.chainID], config.Treasury[config.chainID]);
+        const bnbAmountofTreasury =
+          await getBNBBalance(config.Treasury[config.chainID]);
+
         const treasury = treasuryRFV + tytanAmountofTreasury * marketPrice + bnbAmountofTreasury * wbnbPrice.usd;
         const pastTreasury = 728135.06;
 
