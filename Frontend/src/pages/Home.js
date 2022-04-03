@@ -35,7 +35,7 @@ const Home = ({ data }) => {
     },
     {
       text: "Average tytan holding",
-      ans: "$" + formatNumber(data.averageHolding, 2),
+      ans: formatCurrency(data.averageHolding, 2),
     },
   ];
 

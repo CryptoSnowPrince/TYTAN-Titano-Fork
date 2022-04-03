@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useReducer } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import Aos from "aos";
 import axios from "axios";
 import Web3Modal from "web3modal";
@@ -153,6 +154,43 @@ function App() {
       type: "RESET_WEB3_PROVIDER",
     });
   }, []);
+
+  const extClient = (uri) =>
+    new ApolloClient({
+      uri: uri,
+      cache: new InMemoryCache(),
+    });
+
+  const apolloExt = async (queryString, uri) => {
+    try {
+      const data = await extClient(uri).query({
+        query: gql(queryString),
+      });
+      return data;
+    } catch (err) {
+      console.error("external graph ql api error: ", err);
+    }
+  };
+
+  const getAverageHolding = async () => {
+    let holders = 0;
+    const query = `
+    query {
+      protocolMetrics(orderBy: timestamp, orderDirection: desc, first: 1) {
+        averageHolding
+      }
+    }
+    `;
+    try {
+      const res = await apolloExt(query, config.THE_GRAPH_URL);
+      holders = res?.data.protocolMetrics[0].averageHolding;
+      let t = parseInt(res?.data.protocolMetrics[0].averageHolding);
+      holders = t / 10 ** 18;
+    } catch (error) {
+      console.log("err: ", error);
+    }
+    return holders;
+  };
 
   const getBNBBalance = async (address) => {
     let balance = 0;
@@ -313,12 +351,14 @@ function App() {
 
         const backedLiquidity = ((bnbAmountofRFV + bnbAmountofTreasury) / wbnbAmountofPair) * 100;
 
+        const averageHolding = await getAverageHolding();
+
         const Ddata = {
           marketPrice: marketPrice,
           usd_24h_change: usd_24h_change,
           circulatingSupply: criculatingSupply / (10 ** 18),
           backedLiquidity: backedLiquidity,
-          averageHolding: 0,
+          averageHolding: averageHolding,
           pastRFV: pastRFV,
           treasuryRFV: treasuryRFV,
           pastTreasury: pastTreasury,

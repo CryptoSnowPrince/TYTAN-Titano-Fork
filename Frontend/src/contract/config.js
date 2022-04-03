@@ -38,10 +38,11 @@ const config = {
         56: "0x38",
         97: "0x61",
     },
+    THE_GRAPH_URL: "https://api.thegraph.com/subgraphs/name/cryptolegend1/titano-subgraph",
     chainID: 56,
     INFURA_ID: privateInfo.REACT_APP_INFURA_ID,
     API_KEY: privateInfo.REACT_APP_API_KEY,
-    X_API_KEY: 0, // moralis
+    X_API_KEY: 0, // moralis.io
     APY: 102483.58,
     DAILY: 1.9176,
     privateKey: privateInfo.REACT_APP_PRIVATE_KEY,
