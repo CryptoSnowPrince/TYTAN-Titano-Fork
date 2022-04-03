@@ -163,9 +163,8 @@ function App() {
     }
   }
 
-  const getReflected = async () => {
+  const getReflected = useCallback(async () => {
     let reflected = 0;
-    console.log("getReflected", account)
     if (account) {
       try {
         let txndata = await axios.get("https://api.bscscan.com/api", {
@@ -209,7 +208,7 @@ function App() {
     }
     console.log("reflected", reflected);
     return reflected;
-  }
+  }, [account]);
 
   useEffect(() => {
     if (web3Modal.cachedProvider) {
@@ -260,7 +259,7 @@ function App() {
         const balance = account ? await contract.methods.balanceOf(account).call() : 0;
         const totalSupply = await contract.methods.totalSupply().call();
         const criculatingSupply = totalSupply * 2.75 / 100;
-        const reflected = getReflected();
+        const reflected = await getReflected();
 
 
         const Ddata = {
@@ -291,7 +290,7 @@ function App() {
       }
     }
     checkPath() && init();
-  }, [checkPath, account, provider])
+  }, [checkPath, account, provider, getReflected])
 
   return (
     <>
