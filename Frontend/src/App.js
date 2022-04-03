@@ -201,12 +201,10 @@ function App() {
           },
         );
         reflected = movements.bought - movements.sold;
-        console.log("try reflected", reflected);
       } catch (e) {
         console.warn("failed contract calls in slice", e);
       }
     }
-    console.log("reflected", reflected);
     return reflected;
   }, [account]);
 
