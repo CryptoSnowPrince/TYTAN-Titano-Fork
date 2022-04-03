@@ -31,7 +31,7 @@ const Account = ({ data }) => {
     },
     {
       title: "Next Reward Amount",
-      result: formatNumber(data.balance * 0.0003958125, 2) + " TYTAN",
+      result: (isNaN(data.balance) ? "0.00" : formatNumber(data.balance * 0.0003958125, 2)) + " TYTAN",
       color: "",
     },
     {
@@ -67,9 +67,11 @@ const Account = ({ data }) => {
               {formatCurrency(earnedTokenAmount() * data.marketPrice, 2)}
             </p>
             <h3 className="  text-xs uppercase text-white">
-              {formatNumber(earnedTokenAmount(), 2)} tytano
+              {formatNumber(earnedTokenAmount(), 2)} tytan
               <span className="text-primary ">
-                {formatNumber((earnedTokenAmount() / data.balance) * 100, 2)}%
+                {isNaN((earnedTokenAmount() / data.balance)) ?
+                  " 0.00% " :
+                  (" " + formatNumber((earnedTokenAmount() / data.balance) * 100, 2)) + "% "}
               </span>
               increase
             </h3>
