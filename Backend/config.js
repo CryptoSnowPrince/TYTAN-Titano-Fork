@@ -1,7 +1,8 @@
 module.exports = {
     tytan: {
         56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
-        97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
+        97: '0x4350aba3EAcA4703F42Fe269771a62143E545692',
+        // 97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
     },
     BlockExplorerURL: {
         56: "https://bscscan.com",
@@ -16,5 +17,6 @@ module.exports = {
             97: "https://speedy-nodes-nyc.moralis.io/03eb35954a0b7ed092444a8e/bsc/testnet",
         },
     },
-    chainID: 56,
+    DEFAULT_GAS_PRICE: 100000000000,
+    chainID: 97,
 };

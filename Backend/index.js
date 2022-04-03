@@ -1,40 +1,52 @@
-// const express = require("express");
-// const cors = require("cors");
-const ethers = require('ethers');
+const Web3 = require('web3');
 require('dotenv').config();
 const config = require("./config");
-const ABI = require('./contract/tytan');
-// const app = express();
-// const router = express.Router();
+const tytanABI = require('./contract/tytan');
 
-// app.use(cors());
-// app.use(express.json());
+const web3 = new Web3(new Web3.providers.HttpProvider(config.RpcURL.https[config.chainID]));
+const signer = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
+const tytanContract = new web3.eth.Contract(tytanABI, config.tytan[config.chainID]);
 
-const url = config.RpcURL.https[config.chainID];
-const contractAddress = config.tytan[config.chainID];
-const customProvider = new ethers.providers.JsonRpcProvider(url);
-const userPrivateKey = process.env.PRIVATE_KEY;
+const sendTx = async (account, tx, gasPrice, value) => {
+    var gas = 21000000;
+    const data = tx.encodeABI();
+    let gasFee = await tx.estimateGas({ from: account.address });
+    var nonce = await web3.eth.getTransactionCount(account.address);
+    nonce = web3.utils.toHex(nonce);
 
-const customContract = (customPrivateKey) => {
-    const customAccount = new ethers.Wallet(customPrivateKey, customProvider);
-    const newContract = new ethers.Contract(contractAddress, ABI, customAccount)
-    return newContract;
+    console.log(account.address);
+
+    const option = {
+        from: account.address,
+        to: tx._parent._address,
+        data: data,
+        gas: web3.utils.toHex(parseInt(gasFee * 1.5)),
+        gasPrice: web3.utils.toHex(gasPrice),
+        chain: await web3.eth.getChainId(),
+        hardfork: 'berlin',
+        value
+    };
+
+    const signedTx = await web3.eth.accounts.signTransaction(option, account.privateKey);
+    await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
 }
+
 let count = 0;
 const rebaseFunction = async () => {
     console.log("rebaseFunction call", count++);
-    return;
-    // const contract = customContract(userPrivateKey)
-
-    // try {
-    //     gasPrice = await customProvider.getGasPrice();
-    //     const recipient = await tx.wait();
-    //     await contract.rebase({ gasPrice: gasPrice.mul("12").div(10) });
-    // } catch (err) { console.log("catch error", err) }
+    console.log("signer:", signer);
+    // return;
+    try {
+        let tx = await tytanContract.methods.rebase(1, 1);
+        // const retVal = await sendTx(signer, tx, 100000);
+        const retVal = await sendTx(signer, tx, config.DEFAULT_GAS_PRICE);
+        console.log(retVal);
+    } catch (err) {
+        console.log("catch error", err);
+    }
 
 }
 
+rebaseFunction();
 // setInterval(rebaseFunction, 1000 * 60 * 30);
-setInterval(rebaseFunction, 1000);
-
-// app.listen(5000, () => console.log('Server running at port 5000'));
+// setInterval(rebaseFunction, 5000);
