@@ -27,7 +27,7 @@ const Home = ({ data }) => {
     },
     {
       text: "backed liquidity",
-      ans: formatNumber(data.backedLiquidity, 2) + "%",
+      ans: (isNaN(data.backedLiquidity) ? "0": formatNumber(data.backedLiquidity, 2)) + "%",
     },
     {
       text: "next rebase",

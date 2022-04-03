@@ -311,11 +311,13 @@ function App() {
         const pair = wbnbAmountofPair * wbnbPrice.usd;
         const pastPair = 2397215.48;
 
+        const backedLiquidity = ((bnbAmountofRFV + bnbAmountofTreasury) / wbnbAmountofPair) * 100;
+
         const Ddata = {
           marketPrice: marketPrice,
           usd_24h_change: usd_24h_change,
           circulatingSupply: criculatingSupply / (10 ** 18),
-          backedLiquidity: 0,
+          backedLiquidity: backedLiquidity,
           averageHolding: 0,
           pastRFV: pastRFV,
           treasuryRFV: treasuryRFV,
