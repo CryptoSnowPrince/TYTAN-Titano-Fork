@@ -63,9 +63,14 @@ const Account = ({ data }) => {
         <div className="bg-dark-400 rounded-xl bg-opacity-40 grid grid-cols-2  px-8 py-8">
           <div>
             <h3 className=" text-lightGray-400 uppercase">Total Earned</h3>
-            <p className=" text-primary font-semibold text-5xl my-2">{formatCurrency(earnedTokenAmount() * data.marketPrice, 2)}</p>
+            <p className=" text-primary font-semibold text-5xl my-2">
+              {formatCurrency(earnedTokenAmount() * data.marketPrice, 2)}
+            </p>
             <h3 className="  text-xs uppercase text-white">
-              1.71 tytano  <span className="text-primary ">154% </span>
+              {formatNumber(earnedTokenAmount(), 2)} tytano
+              <span className="text-primary ">
+                {formatNumber((earnedTokenAmount() / data.balance) * 100, 2)}%
+              </span>
               increase
             </h3>
           </div>
