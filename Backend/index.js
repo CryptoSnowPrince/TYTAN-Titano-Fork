@@ -1,52 +1,74 @@
-const Web3 = require('web3');
-require('dotenv').config();
-const config = require("./config");
-const tytanABI = require('./contract/tytan');
+import Web3 from 'web3';
+import fs from 'fs';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const web3 = new Web3(new Web3.providers.HttpProvider(config.RpcURL.https[config.chainID]));
-const signer = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
-const tytanContract = new web3.eth.Contract(tytanABI, config.tytan[config.chainID]);
+let rawdata = fs.readFileSync('./contract/test.json');
+let astroABI = JSON.parse(rawdata);
+
+// create signer
+var defaultWeb3 = new Web3(new Web3.providers.HttpProvider(process.env.WSS_URL_TEST));
+let signer = defaultWeb3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
+var web3 = new Web3(process.env.WSS_URL_TEST);
+
+// create astro contract
+var astroContract = new defaultWeb3.eth.Contract(astroABI, process.env.LOTTERY_ADDRESS);
+
+// default gas price for sending transactions
+const DEFAULT_GAS_PRICE = 100000000000;
+
+// interval function has to be locked when other transaction occured
+var LOCK_FUNCTION = false;
+
+var interval_index = 0;
+setInterval(async () => {
+    if (LOCK_FUNCTION)
+        return;
+
+    LOCK_FUNCTION = true;
+
+    try {
+        var tx = await astroContract.methods.rebase(interval_index);
+        await sendTx(signer, tx, DEFAULT_GAS_PRICE, 0);
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    interval_index++;
+    LOCK_FUNCTION = true;
+}, 1000);
 
 const sendTx = async (account, tx, gasPrice, value) => {
     var gas = 21000000;
     const data = tx.encodeABI();
-    let gasFee = await tx.estimateGas({ from: account.address });
-    var nonce = await web3.eth.getTransactionCount(account.address);
+    let gasFee = await tx.estimateGas({ from: signer.address });
+    var nonce = await web3.eth.getTransactionCount(signer.address);
     nonce = web3.utils.toHex(nonce);
-
-    console.log(account.address);
 
     const option = {
         from: account.address,
         to: tx._parent._address,
         data: data,
+        nonce,
         gas: web3.utils.toHex(parseInt(gasFee * 1.5)),
         gasPrice: web3.utils.toHex(gasPrice),
         chain: await web3.eth.getChainId(),
         hardfork: 'berlin',
-        value
     };
 
     const signedTx = await web3.eth.accounts.signTransaction(option, account.privateKey);
-    await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+    await web3.eth.sendSignedTransaction(signedTx.rawTransaction)
+        .on('transactionHash', function (hash) {
+            console.log('transactionHash : ', hash);
+        })
+        .on('confirmation', function (confirmationNumber, receipt) {
+            console.log("transaction is done");
+        })
+        .on('receipt', function (receipt) {
+            console.log("Transaction receipt: ", receipt);
+        })
+        .on('error', function (error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+            console.log('Attack failed: ', error)
+        });
 }
-
-let count = 0;
-const rebaseFunction = async () => {
-    console.log("rebaseFunction call", count++);
-    console.log("signer:", signer);
-    // return;
-    try {
-        let tx = await tytanContract.methods.rebase(1, 1);
-        // const retVal = await sendTx(signer, tx, 100000);
-        const retVal = await sendTx(signer, tx, config.DEFAULT_GAS_PRICE);
-        console.log(retVal);
-    } catch (err) {
-        console.log("catch error", err);
-    }
-
-}
-
-rebaseFunction();
-// setInterval(rebaseFunction, 1000 * 60 * 30);
-// setInterval(rebaseFunction, 5000);
