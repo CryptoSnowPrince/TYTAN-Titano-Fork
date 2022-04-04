@@ -3,7 +3,7 @@ import privateInfo from "./private";
 const config = {
     tytan: {
         56: '0xBA96731324dE188ebC1eD87ca74544dDEbC07D7f',
-        97: '0x19a91af91915DC5821Cf2b38b6e4938C638bF628',
+        97: '0x41fc2c520C5591d29094825C903e5Aa2C6d4262D',
     },
     wbnb: {
         56: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
