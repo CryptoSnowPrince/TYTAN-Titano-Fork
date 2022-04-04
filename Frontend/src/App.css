@@ -153,7 +153,14 @@ body {
   min-height: 800px;
 }
 .paddingRight {
-  padding-right: 5rem;
+  padding-right: 12rem;
+  padding-left: 12rem;
+}
+@media (max-width: 1500px) {
+  .paddingRight {
+    padding-right: 5rem;
+    padding-left: 5rem;
+  }
 }
 @media (max-width: 1200px) {
   .paddingRight {

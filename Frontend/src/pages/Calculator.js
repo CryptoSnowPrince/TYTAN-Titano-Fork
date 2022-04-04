@@ -84,7 +84,6 @@ const Calculator = ({ marketPrice = 0, titanoBalance = 0 }) => {
     <div className="">
       <div className=" w-full mx-auto ">
         <h2 className="font-bold text-xl">Calculator</h2>
-        {/* <p className="text-xs font-medium">Estimate your returns</p> */}
         <div className="my-8">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             {topList.map((val, i) => (

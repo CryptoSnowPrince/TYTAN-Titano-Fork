@@ -60,8 +60,8 @@ const Account = ({ data }) => {
     <div className="mx-auto uppercase">
       <h2 className="mb-6 font-bold uppercase ">Your Account</h2>
       <div className="  grid grid-cols-1 gap-8 mb-10">
-        <div className="bg-dark-400 rounded-xl bg-opacity-40 grid grid-cols-2  px-8 py-8">
-          <div>
+        <div className=" grid  grid-cols-1 sm:grid-cols-2 gap-x-6 gap-8 text-center">
+          <div className="p-6 bg-dark-400 rounded-xl bg-opacity-40 ">
             <h3 className=" text-lightGray-400 uppercase">Total Earned</h3>
             <p className=" text-primary font-semibold text-5xl my-2">
               {formatCurrency(earnedTokenAmount() * data.marketPrice, 2)}
@@ -76,7 +76,7 @@ const Account = ({ data }) => {
               increase
             </h3>
           </div>
-          <div>
+          <div className="bg-dark-400 rounded-xl bg-opacity-40  p-6">
             <h3 className=" text-lightGray-400 uppercase">apy</h3>
             <p className=" text-primary font-semibold text-5xl my-2">
               {apy}
@@ -84,7 +84,7 @@ const Account = ({ data }) => {
             <h3 className=" text-xs text-white">{daily}</h3>
           </div>
         </div>
-        <div className=" grid  grid-cols-1 sm:grid-cols-3 gap-x-6 text-center">
+        <div className=" grid  grid-cols-1 sm:grid-cols-3 gap-x-6 gap-8 text-center">
           <div className="p-6 bg-dark-400 rounded-xl bg-opacity-40 ">
             <p className=" text-lightGray-400 uppercase text-sm">
               your balance
