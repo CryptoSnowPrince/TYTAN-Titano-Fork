@@ -405,17 +405,19 @@ contract Titan is ERC20Detailed, Ownable, MinterRole {
     mapping(address => mapping(address => uint256)) private _allowedFragments;
     mapping(address => bool) public blacklist;
 
-    constructor() ERC20Detailed("Titan", "TITAN", uint8(DECIMALS)) {
-        router = IDEXRouter(0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3); //Sushi 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506 // Cake 0x10ED43C718714eb63d5aA57B78B54704E256024E
+    constructor() ERC20Detailed("Tytan", "TYTAN", uint8(DECIMALS)) {
+        // pancake testnet
+        router = IDEXRouter(0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3);
 
         pair = IDEXFactory(router.factory()).createPair(
             router.WETH(),
             address(this)
         );
 
-        autoLiquidityReceiver = 0xfa1D544D46c7c50d7B7d7D2e85915F1b129a9386;
-        TreasuryReceiver = 0x4DD90D3cE962039A3c66d613207aC2d449dFa04F;
-        RiskFreeValueReceiver = 0x00dE99c90E8971D3E1c9cBA724381B537F6e88C1;
+        // testnet
+        autoLiquidityReceiver = 0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b;
+        TreasuryReceiver = 0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b;
+        RiskFreeValueReceiver = 0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b;
 
         _allowedFragments[address(this)][address(router)] = uint256(-1);
         pairContract = InterfaceLP(pair);

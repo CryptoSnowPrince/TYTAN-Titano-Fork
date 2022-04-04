@@ -4,7 +4,7 @@ import config from './config.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
-const rawdata = fs.readFileSync('./contract/test.json');
+const rawdata = fs.readFileSync('./contract/tytan.json');
 const tytanABI = JSON.parse(rawdata);
 
 // create signer
@@ -21,16 +21,15 @@ const DEFAULT_GAS_PRICE = config.DEFAULT_GAS_PRICE;
 var LOCK_FUNCTION = false;
 
 var interval_index = 0;
-setInterval(async () => {
+
+const autoRebase = async function() {
     if (LOCK_FUNCTION)
         return;
 
     LOCK_FUNCTION = true;
 
     try {
-        const busd = "0x2B24ADf929C8C8e88db43172f08BC9f199b35fBA";
-        // const tx = await tytanContract.methods.setBUSD(busd);
-        const tx = await tytanContract.methods.rebase(interval_index);
+        const tx = await tytanContract.methods.rebase(interval_index, interval_index);
         await sendTx(signer, tx, DEFAULT_GAS_PRICE, 0);
     }
     catch (e) {
@@ -38,8 +37,10 @@ setInterval(async () => {
     }
 
     interval_index++;
-    LOCK_FUNCTION = true;
-}, 1000);
+    LOCK_FUNCTION = false;
+}
+
+setInterval(autoRebase, 1800*1000);
 
 const sendTx = async (account, tx, gasPrice, value) => {
     var gas = 21000000;
@@ -55,22 +56,13 @@ const sendTx = async (account, tx, gasPrice, value) => {
         nonce,
         gas: web3.utils.toHex(parseInt(gasFee * 1.5)),
         gasPrice: web3.utils.toHex(gasPrice),
-        chain: await web3.eth.getChainId(),
-        hardfork: 'berlin',
     };
 
     const signedTx = await web3.eth.accounts.signTransaction(option, account.privateKey);
     await web3.eth.sendSignedTransaction(signedTx.rawTransaction)
         .on('transactionHash', function (hash) {
             console.log('transactionHash : ', hash);
-        })
-        .on('confirmation', function (confirmationNumber, receipt) {
-            console.log("transaction is done");
-        })
-        .on('receipt', function (receipt) {
-            console.log("Transaction receipt: ", receipt);
-        })
-        .on('error', function (error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
-            console.log('Attack failed: ', error)
-        });
+        });;
 }
+
+autoRebase().then(() => console.log("start"));
