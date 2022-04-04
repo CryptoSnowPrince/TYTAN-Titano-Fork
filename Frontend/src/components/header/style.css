@@ -10,6 +10,25 @@
 .toggle-bar {
   display: hidden;
 }
+.header-dropdown-menu {
+  background-color: #333;
+}
+#headlessui-menu-button-1 {
+  border: unset !important;
+}
+#headlessui-menu-button-1:focus,
+#headlessui-menu-button-1:active,
+#headlessui-menu-button-1:focus-visible {
+  border: unset !important;
+  outline: unset !important;
+}
+.header-text-primary {
+  color: rgb(0 255 0) !important;
+  background-color: #333;
+}
+.header-text-primary:hover {
+  background-color: #223232;
+}
 @media (max-width: 1200px) {
   .header {
     width: 100%;

@@ -63,7 +63,7 @@ const Home = ({ data }) => {
   ];
 
   return (
-    <div className="md:px-8">
+    <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className=" bg-dark-400 rounded-xl bg-opacity-50 md:col-span-2">
           <div className="text-center p-4 py-8 grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-6 text-base">

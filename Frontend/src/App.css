@@ -152,16 +152,41 @@ body {
 .faq {
   min-height: 800px;
 }
-
+.paddingRight {
+  padding-right: 5rem;
+}
+@media (max-width: 1200px) {
+  .paddingRight {
+    padding-right: 1rem;
+  }
+}
 @media (max-width: 768px) {
   .faq {
     min-height: 800px;
+  }
+  .mt-44 {
+    margin-top: 8rem;
   }
 }
 
 @media (max-width: 600px) {
   .faq {
     min-height: 1000px;
+  }
+  .header-mobile-element-hidden{
+    display: none;
+  }
+  .text-5xl{
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-mobile-css{
+
+  }
+  .text-5xl{
+    font-size: 1rem;
   }
 }
 .bg-dark-400.rounded-xl.bg-opacity-50.p-8 {

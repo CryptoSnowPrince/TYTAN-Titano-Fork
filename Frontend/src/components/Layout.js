@@ -12,7 +12,7 @@ const Layout = ({ children, connect, web3Provider, disconnect, showAccountAddres
         </div>
         <div className="dashboard-right flex-1">
           <Header show={show} setShow={setShow} connect={connect} web3Provider={web3Provider} disconnect={disconnect} showAccountAddress={showAccountAddress} />
-          <div className=" mt-44 px-4 pb-20">
+          <div className=" mt-44 px-4 pb-20 paddingRight" >
             <Outlet />
           </div>
         </div>

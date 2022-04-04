@@ -15,7 +15,7 @@ const Sidebar = ({ show, setShow }) => {
     <div className={`sidebar ${show && "active"}  flex flex-col`}>
       <div className="grid grid-flow-col gap-x-3 justify-start  items-center sidebar-logo px-5">
         <Link to="../">
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="" className="px-6" />
         </Link>
       </div>
       <div className="flex flex-col  justify-between flex-1 px-6 py-4">
