@@ -9,7 +9,6 @@ const config = {
     rpc: {
         wss: {
             1: "wss://mainnet.infura.io/ws/v3/9254bae6432742babcfc7d367c7e77cd",
-            56: "https://bsc-dataseed1.defibit.io/",
         },
         https: {
             4: "https://rinkeby.infura.io/v3/2b400873a26747b694c7075796523b3d",
