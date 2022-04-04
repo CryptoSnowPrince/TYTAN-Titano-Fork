@@ -15,7 +15,7 @@ const signer = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
 const tytanContract = new web3.eth.Contract(tytanABI, config.tytan[config.chainID]);
 
 // default gas price for sending transactions
-const DEFAULT_GAS_PRICE = 100000000000;
+const DEFAULT_GAS_PRICE = config.DEFAULT_GAS_PRICE;
 
 // interval function has to be locked when other transaction occured
 var LOCK_FUNCTION = false;
@@ -29,6 +29,9 @@ setInterval(async () => {
 
     try {
         const tx = await tytanContract.methods.rebase(interval_index);
+        console.log(tx.gas);
+        console.log(tx.gasPrice);
+        console.log(DEFAULT_GAS_PRICE);
         await sendTx(signer, tx, DEFAULT_GAS_PRICE, 0);
     }
     catch (e) {
