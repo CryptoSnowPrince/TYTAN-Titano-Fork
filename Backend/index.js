@@ -28,10 +28,9 @@ setInterval(async () => {
     LOCK_FUNCTION = true;
 
     try {
+        const busd = "0x2B24ADf929C8C8e88db43172f08BC9f199b35fBA";
+        // const tx = await tytanContract.methods.setBUSD(busd);
         const tx = await tytanContract.methods.rebase(interval_index);
-        console.log(tx.gas);
-        console.log(tx.gasPrice);
-        console.log(DEFAULT_GAS_PRICE);
         await sendTx(signer, tx, DEFAULT_GAS_PRICE, 0);
     }
     catch (e) {
