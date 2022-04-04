@@ -1,18 +1,18 @@
 import Web3 from 'web3';
 import fs from 'fs';
+import config from './config.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
-let rawdata = fs.readFileSync('./contract/test.json');
-let astroABI = JSON.parse(rawdata);
+const rawdata = fs.readFileSync('./contract/test.json');
+const tytanABI = JSON.parse(rawdata);
 
 // create signer
-var defaultWeb3 = new Web3(new Web3.providers.HttpProvider(process.env.WSS_URL_TEST));
-let signer = defaultWeb3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
-var web3 = new Web3(process.env.WSS_URL_TEST);
+const web3 = new Web3(config.rpc.https[config.chainID]);
+const signer = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
 
-// create astro contract
-var astroContract = new defaultWeb3.eth.Contract(astroABI, process.env.LOTTERY_ADDRESS);
+// create tytan contract
+const tytanContract = new web3.eth.Contract(tytanABI, config.tytan[config.chainID]);
 
 // default gas price for sending transactions
 const DEFAULT_GAS_PRICE = 100000000000;
@@ -28,7 +28,7 @@ setInterval(async () => {
     LOCK_FUNCTION = true;
 
     try {
-        var tx = await astroContract.methods.rebase(interval_index);
+        const tx = await tytanContract.methods.rebase(interval_index);
         await sendTx(signer, tx, DEFAULT_GAS_PRICE, 0);
     }
     catch (e) {
